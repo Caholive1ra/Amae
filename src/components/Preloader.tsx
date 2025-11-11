@@ -21,7 +21,7 @@ const Preloader = () => {
         'animate-fade-out'
       )}
     >
-      <div className="text-4xl md:text-6xl font-light tracking-widest text-foreground animate-fade-in">
+      <div className="text-5xl md:text-7xl font-playfair tracking-widest text-foreground animate-breathe">
         AMAÉ
       </div>
     </div>

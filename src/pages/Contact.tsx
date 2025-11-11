@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,73 +28,78 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-light text-foreground mb-6">
-            Contato
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Entre em contato conosco para conhecer mais sobre o ateliê ou fazer uma encomenda personalizada
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-24">
+            <h1 className="text-6xl md:text-7xl font-playfair text-foreground mb-8 leading-tight">
+              Contato
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
+              Entre em contato conosco para conhecer mais sobre o ateliê ou fazer uma encomenda personalizada
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid md:grid-cols-2 gap-20 items-start">
           {/* Image & Info */}
-          <div className="space-y-8 animate-fade-in">
-            <div className="relative h-[500px] rounded-lg overflow-hidden">
-              <img
-                src={aboutAtelier}
-                alt="Ateliê Amaé"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <ScrollReveal delay={100}>
+            <div className="space-y-10">
+              <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
+                <img
+                  src={aboutAtelier}
+                  alt="Ateliê Amaé"
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-            <div className="space-y-6">
-              <h2 className="text-2xl font-light text-foreground">O Ateliê</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Cada peça Amaé é criada com cuidado e atenção personalizada. 
-                Trabalhamos com encomendas sob medida, respeitando o tempo necessário 
-                para que cada criação seja única e especial.
-              </p>
+              <div className="space-y-8">
+                <h2 className="text-3xl font-playfair text-foreground">O Ateliê</h2>
+                <p className="text-muted-foreground leading-relaxed font-light text-lg">
+                  Cada peça Amaé é criada com cuidado e atenção personalizada. 
+                  Trabalhamos com encomendas sob medida, respeitando o tempo necessário 
+                  para que cada criação seja única e especial.
+                </p>
 
-              <div className="space-y-4 pt-4">
-                <a
-                  href="mailto:contato@amae.com"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Mail size={20} />
-                  <span>contato@amae.com</span>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Instagram size={20} />
-                  <span>@amae.moda</span>
-                </a>
+                <div className="space-y-5 pt-4">
+                  <a
+                    href="mailto:contato@amae.com"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
+                  >
+                    <Mail size={22} />
+                    <span className="font-light">contato@amae.com</span>
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
+                  >
+                    <Instagram size={22} />
+                    <span className="font-light">@amae.moda</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Form */}
-          <div className="animate-fade-in">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name">Nome</Label>
+          <ScrollReveal delay={300}>
+            <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 p-10 rounded-lg shadow-soft">
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-base font-lato">Nome</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   placeholder="Seu nome completo"
+                  className="h-12 border-border/50 focus:border-accent transition-colors"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
+              <div className="space-y-3">
+                <Label htmlFor="email" className="text-base font-lato">E-mail</Label>
                 <Input
                   id="email"
                   type="email"
@@ -101,11 +107,12 @@ const Contact = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   placeholder="seu@email.com"
+                  className="h-12 border-border/50 focus:border-accent transition-colors"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message">Mensagem</Label>
+              <div className="space-y-3">
+                <Label htmlFor="message" className="text-base font-lato">Mensagem</Label>
                 <Textarea
                   id="message"
                   value={formData.message}
@@ -113,14 +120,15 @@ const Contact = () => {
                   required
                   rows={6}
                   placeholder="Conte-nos sobre seu interesse nas peças Amaé..."
+                  className="border-border/50 focus:border-accent transition-colors resize-none"
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full">
+              <Button type="submit" size="lg" className="w-full shadow-soft hover-lift">
                 Enviar Mensagem
               </Button>
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>

@@ -42,41 +42,44 @@ const InterestModal = ({ isOpen, onClose, pieceName }: InterestModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-light">Registrar Interesse</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-3xl font-playfair">Registrar Interesse</DialogTitle>
+          <DialogDescription className="font-light text-lg">
             Preencha o formulário e entraremos em contato sobre {pieceName}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Nome</Label>
+        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+          <div className="space-y-3">
+            <Label htmlFor="name" className="font-lato">Nome</Label>
             <Input
               id="name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
+              className="border-border/50 focus:border-accent transition-colors"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">E-mail</Label>
+          <div className="space-y-3">
+            <Label htmlFor="email" className="font-lato">E-mail</Label>
             <Input
               id="email"
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
+              className="border-border/50 focus:border-accent transition-colors"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="message">Mensagem (opcional)</Label>
+          <div className="space-y-3">
+            <Label htmlFor="message" className="font-lato">Mensagem (opcional)</Label>
             <Textarea
               id="message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={3}
+              className="border-border/50 focus:border-accent transition-colors resize-none"
             />
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full shadow-soft hover-lift">
             Enviar
           </Button>
         </form>

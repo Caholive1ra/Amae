@@ -1,3 +1,4 @@
+import ScrollReveal from '@/components/ScrollReveal';
 import aboutAtelier from '@/assets/about-atelier.jpg';
 import heroHome from '@/assets/hero-home.jpg';
 import processDye from '@/assets/process-dye.jpg';
@@ -27,66 +28,76 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-32 pb-20">
       {/* Hero */}
-      <div className="container mx-auto px-4 max-w-4xl mb-20">
-        <div className="text-center animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-light text-foreground mb-6">
-            Manifesto
-          </h1>
-          <p className="text-xl text-muted-foreground italic max-w-2xl mx-auto">
-            Amaé é amor em estado de ser. É semente, raiz e flor. É o tempo que floresce.
-          </p>
-        </div>
+      <div className="container mx-auto px-4 max-w-4xl mb-32">
+        <ScrollReveal>
+          <div className="text-center">
+            <h1 className="text-6xl md:text-7xl font-playfair text-foreground mb-10 leading-tight">
+              Manifesto
+            </h1>
+            <p className="text-2xl text-muted-foreground italic max-w-2xl mx-auto font-playfair font-light">
+              Amaé é amor em estado de ser. É semente, raiz e flor. É o tempo que floresce.
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Manifesto Sections */}
-      <div className="space-y-32">
+      <div className="space-y-40">
         {manifestoSections.map((section, index) => (
           <section
             key={index}
-            className={`container mx-auto px-4 max-w-6xl animate-fade-in`}
+            className="container mx-auto px-4 max-w-6xl"
           >
             <div
-              className={`grid md:grid-cols-2 gap-12 items-center ${
+              className={`grid md:grid-cols-2 gap-16 items-center ${
                 index % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
             >
               {index % 2 === 0 ? (
                 <>
-                  <div className="relative h-[500px] rounded-lg overflow-hidden">
-                    <img
-                      src={section.image}
-                      alt={section.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="space-y-6">
-                    <h2 className="text-4xl font-light text-foreground">
-                      {section.title}
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {section.content}
-                    </p>
-                  </div>
+                  <ScrollReveal delay={100}>
+                    <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </ScrollReveal>
+                  <ScrollReveal delay={300}>
+                    <div className="space-y-8">
+                      <h2 className="text-5xl font-playfair text-foreground leading-tight">
+                        {section.title}
+                      </h2>
+                      <p className="text-xl text-muted-foreground leading-relaxed font-light">
+                        {section.content}
+                      </p>
+                    </div>
+                  </ScrollReveal>
                 </>
               ) : (
                 <>
-                  <div className="space-y-6">
-                    <h2 className="text-4xl font-light text-foreground">
-                      {section.title}
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {section.content}
-                    </p>
-                  </div>
-                  <div className="relative h-[500px] rounded-lg overflow-hidden">
-                    <img
-                      src={section.image}
-                      alt={section.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <ScrollReveal delay={300}>
+                    <div className="space-y-8">
+                      <h2 className="text-5xl font-playfair text-foreground leading-tight">
+                        {section.title}
+                      </h2>
+                      <p className="text-xl text-muted-foreground leading-relaxed font-light">
+                        {section.content}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                  <ScrollReveal delay={100}>
+                    <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </ScrollReveal>
                 </>
               )}
             </div>
@@ -95,12 +106,14 @@ const About = () => {
       </div>
 
       {/* Final Quote */}
-      <div className="container mx-auto px-4 max-w-3xl mt-32">
-        <div className="text-center py-16 border-t border-border">
-          <blockquote className="text-2xl md:text-3xl font-light text-foreground italic">
-            "O que é feito com calma, amor e intenção, permanece."
-          </blockquote>
-        </div>
+      <div className="container mx-auto px-4 max-w-3xl mt-40">
+        <ScrollReveal>
+          <div className="text-center py-20 border-t border-border/50">
+            <blockquote className="text-3xl md:text-4xl font-playfair text-foreground italic font-light leading-relaxed">
+              "O que é feito com calma, amor e intenção, permanece."
+            </blockquote>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

@@ -6,10 +6,16 @@ import { cn } from '@/lib/utils';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+      
+      // Calculate opacity based on scroll (0 to 1 over 200px)
+      const newOpacity = Math.min(scrollPosition / 200, 0.98);
+      setScrollOpacity(newOpacity);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -27,24 +33,40 @@ const Header = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'bg-background/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'backdrop-blur-sm'
       )}
+      style={{
+        backgroundColor: `rgba(250, 248, 246, ${scrollOpacity})`,
+        boxShadow: isScrolled ? '0 2px 20px rgba(76, 52, 90, 0.08)' : 'none',
+      }}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-light tracking-widest text-foreground">
+          <Link 
+            to="/" 
+            className={cn(
+              "text-2xl font-playfair tracking-widest transition-colors duration-300",
+              isScrolled ? "text-foreground" : "text-background mix-blend-difference"
+            )}
+          >
             AMAÉ
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.to}>
                 <Link
                   to={link.to}
-                  className="text-sm tracking-wide text-foreground/80 hover:text-foreground transition-colors"
+                  className={cn(
+                    "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300 relative",
+                    "after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-[-4px] after:left-0",
+                    "after:bg-accent after:transition-all after:duration-300",
+                    "hover:text-accent hover:after:w-full",
+                    isScrolled ? "text-foreground/70" : "text-background/90 mix-blend-difference"
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -54,7 +76,10 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className={cn(
+              "md:hidden transition-colors duration-300",
+              isScrolled ? "text-foreground" : "text-background mix-blend-difference"
+            )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -64,12 +89,12 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <ul className="md:hidden mt-4 space-y-4 pb-4">
+          <ul className="md:hidden mt-6 space-y-4 pb-4 bg-background/95 backdrop-blur-md rounded-lg p-4">
             {navLinks.map((link) => (
               <li key={link.to}>
                 <Link
                   to={link.to}
-                  className="block text-sm tracking-wide text-foreground/80 hover:text-foreground transition-colors"
+                  className="block text-sm tracking-widest uppercase font-lato text-foreground/80 hover:text-accent transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
