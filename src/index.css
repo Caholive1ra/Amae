@@ -145,6 +145,76 @@ All colors MUST be HSL.
     animation: fadeOut 0.5s ease-out forwards;
   }
 
+  /* Custom cursor */
+  .custom-cursor {
+    cursor: none;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--accent));
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-outline {
+    width: 32px;
+    height: 32px;
+    border: 1px solid hsl(var(--accent) / 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
+  }
+
+  .cursor-hover .cursor-outline {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* Progress bar */
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--primary)));
+    z-index: 9999;
+    transform-origin: left;
+  }
+
+  /* Page transition overlay */
+  .page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Poetic pause */
+  .poetic-pause {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  /* Smooth scroll */
+  html.smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
   /* Scroll Reveal */
   .scroll-reveal {
     opacity: 0;
@@ -157,19 +227,38 @@ All colors MUST be HSL.
     transform: translateY(0);
   }
 
-  /* Parallax */
+  /* Parallax - enhanced */
   .parallax {
-    transition: transform 0.5s ease-out;
+    transform: translateY(var(--parallax-offset, 0));
+    transition: transform 0.1s linear;
+    will-change: transform;
   }
 
-  /* Hover Effects */
+  /* Cinematic text float */
+  .text-float {
+    animation: textFloat 8s ease-in-out infinite;
+  }
+
+  /* Hover Effects - enhanced */
   .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
   }
 
   .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px -10px rgba(76, 52, 90, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px hsl(var(--foreground) / 0.15);
+  }
+
+  /* Interactive card hover */
+  .card-interactive {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+  }
+
+  .card-interactive:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 48px -12px hsl(var(--foreground) / 0.2);
   }
 
   /* Image Zoom on Hover */
@@ -245,5 +334,15 @@ All colors MUST be HSL.
 
   .animate-breathe {
     animation: breathe 4s ease-in-out infinite;
+  }
+
+  /* Text Float Animation */
+  @keyframes textFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }

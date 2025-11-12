@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import NavLink from './NavLink';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,14 +33,17 @@ const Header = () => {
   ];
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        'backdrop-blur-sm'
+        'backdrop-blur-md'
       )}
       style={{
         backgroundColor: `rgba(250, 248, 246, ${scrollOpacity})`,
-        boxShadow: isScrolled ? '0 2px 20px rgba(76, 52, 90, 0.08)' : 'none',
+        boxShadow: isScrolled ? '0 2px 20px hsl(var(--foreground) / 0.08)' : 'none',
       }}
     >
       <nav className="container mx-auto px-4 py-5">
@@ -58,18 +63,15 @@ const Header = () => {
           <ul className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.to}>
-                <Link
+                <NavLink 
                   to={link.to}
                   className={cn(
-                    "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300 relative",
-                    "after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-[-4px] after:left-0",
-                    "after:bg-accent after:transition-all after:duration-300",
-                    "hover:text-accent hover:after:w-full",
+                    "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300",
                     isScrolled ? "text-foreground/70" : "text-background/90 mix-blend-difference"
                   )}
                 >
                   {link.label}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -88,23 +90,36 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <ul className="md:hidden mt-6 space-y-4 pb-4 bg-background/95 backdrop-blur-md rounded-lg p-4">
-            {navLinks.map((link) => (
-              <li key={link.to}>
-                <Link
-                  to={link.to}
-                  className="block text-sm tracking-widest uppercase font-lato text-foreground/80 hover:text-accent transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.ul
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="md:hidden mt-6 space-y-4 pb-4 bg-background/95 backdrop-blur-md rounded-lg p-4 overflow-hidden"
+            >
+              {navLinks.map((link, index) => (
+                <motion.li
+                  key={link.to}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
+                  <NavLink
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-sm tracking-widest uppercase font-lato text-foreground/80"
+                  >
+                    {link.label}
+                  </NavLink>
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

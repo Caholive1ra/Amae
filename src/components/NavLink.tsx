@@ -1,28 +1,34 @@
-import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
-import { forwardRef } from "react";
-import { cn } from "@/lib/utils";
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
-interface NavLinkCompatProps extends Omit<NavLinkProps, "className"> {
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+  onClick?: () => void;
   className?: string;
-  activeClassName?: string;
-  pendingClassName?: string;
 }
 
-const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
-  ({ className, activeClassName, pendingClassName, to, ...props }, ref) => {
-    return (
-      <RouterNavLink
-        ref={ref}
-        to={to}
-        className={({ isActive, isPending }) =>
-          cn(className, isActive && activeClassName, isPending && pendingClassName)
-        }
-        {...props}
-      />
-    );
-  },
-);
+const NavLink = ({ to, children, onClick, className }: NavLinkProps) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
 
-NavLink.displayName = "NavLink";
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={cn(
+        "relative transition-colors duration-300 hover:text-accent",
+        "after:content-[''] after:absolute after:w-0 after:h-[1px] after:bottom-[-4px] after:left-0",
+        "after:bg-accent after:transition-all after:duration-300",
+        "hover:after:w-full",
+        isActive && "after:w-full",
+        className
+      )}
+    >
+      {children}
+    </Link>
+  );
+};
 
-export { NavLink };
+export default NavLink;
