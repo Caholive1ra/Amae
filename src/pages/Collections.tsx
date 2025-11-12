@@ -31,8 +31,8 @@ const Collections = () => {
                   <ScrollReveal delay={100}>
                     <div className="relative h-[700px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
                       <img
-                        src={collection.image}
-                        alt={collection.name}
+                        src={collection.hero.src}
+                        alt={collection.hero.alt || collection.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -69,8 +69,8 @@ const Collections = () => {
                   <ScrollReveal delay={100}>
                     <div className="relative h-[700px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
                       <img
-                        src={collection.image}
-                        alt={collection.name}
+                        src={collection.hero.src}
+                        alt={collection.hero.alt || collection.name}
                         className="w-full h-full object-cover"
                       />
                     </div>

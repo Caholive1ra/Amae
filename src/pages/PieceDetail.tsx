@@ -1,32 +1,67 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ScrollReveal from '@/components/ScrollReveal';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
-import { pieces } from '@/data/pieces';
+import { collections } from '@/data/collections';
 import InterestModal from '@/components/InterestModal';
+import Timeline from '@/components/Timeline';
+import MediaCarousel from '@/components/MediaCarousel';
+import SEO from '@/components/SEO';
 
 const PieceDetail = () => {
   const { id } = useParams();
-  const piece = pieces.find((p) => p.id === id);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Find piece in collections
+  const piece = collections
+    .flatMap(c => c.pieces)
+    .find((p) => p.id === id);
 
   if (!piece) {
     return (
-      <div className="min-h-screen pt-32 pb-20 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-playfair text-foreground mb-8">Peça não encontrada</h1>
-          <Button asChild className="shadow-soft">
-            <Link to="/pecas">Voltar para Peças</Link>
-          </Button>
+      <>
+        <SEO
+          title="Peça não encontrada"
+          description="Esta peça não está disponível"
+        />
+        <div className="min-h-screen pt-32 pb-20 px-4">
+          <div className="container mx-auto text-center">
+            <h1 className="text-5xl font-playfair text-foreground mb-8">Peça não encontrada</h1>
+            <Button asChild className="shadow-soft">
+              <Link to="/pecas">Voltar para Peças</Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
+    <>
+      <SEO
+        title={piece.name}
+        description={piece.description}
+        image={piece.image}
+        type="product"
+      >
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": piece.name,
+            "description": piece.conceptText,
+            "image": piece.image,
+            "creator": {
+              "@type": "Organization",
+              "name": "Amaé"
+            },
+            "keywords": piece.tags?.join(', ')
+          })}
+        </script>
+      </SEO>
+
+      <div className="min-h-screen pt-32 pb-20">
       {/* Back Button */}
       <div className="container mx-auto px-4 mb-8">
         <Button asChild variant="ghost" size="sm" className="hover:text-accent">
@@ -49,127 +84,111 @@ const PieceDetail = () => {
         <div className="absolute inset-0 gradient-overlay-dark" />
         <div className="absolute bottom-16 left-0 right-0">
           <div className="container mx-auto px-4">
-            <ScrollReveal>
-              <h1 className="text-6xl md:text-7xl font-playfair text-background mb-4 leading-tight">
-                {piece.name}
-              </h1>
-            </ScrollReveal>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="text-6xl md:text-7xl font-playfair text-background mb-4 leading-tight"
+            >
+              {piece.name}
+            </motion.h1>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Concept */}
-        <ScrollReveal>
-          <section className="mb-24">
-            <h2 className="text-4xl font-playfair text-foreground mb-8">Conceito</h2>
-            <p className="text-xl text-muted-foreground leading-relaxed font-light">
-              {piece.concept}
-            </p>
-          </section>
-        </ScrollReveal>
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-24"
+        >
+          <h2 className="text-4xl font-playfair text-foreground mb-8">Conceito</h2>
+          <p className="text-xl text-muted-foreground leading-relaxed font-light">
+            {piece.conceptText}
+          </p>
+        </motion.section>
 
         {/* Color Origin */}
-        <ScrollReveal>
-          <section className="mb-24">
-            <h2 className="text-4xl font-playfair text-foreground mb-8">
-              Origem da Cor: {piece.colorOrigin.name}
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed font-light">
-              {piece.colorOrigin.description}
-            </p>
-          </section>
-        </ScrollReveal>
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-24"
+        >
+          <h2 className="text-4xl font-playfair text-foreground mb-8">
+            Origem da Cor: {piece.colorOrigin.name}
+          </h2>
+          <p className="text-xl text-muted-foreground leading-relaxed font-light">
+            {piece.colorOrigin.description}
+          </p>
+        </motion.section>
 
         {/* Process */}
-        <ScrollReveal>
-          <section className="mb-24">
-            <h2 className="text-4xl font-playfair text-foreground mb-12">Processo</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {piece.process.map((step, index) => (
-                <Card key={index} className="border-border/50 shadow-soft hover-lift">
-                  <CardContent className="p-8">
-                    <div className="flex items-start gap-6">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/20 text-accent flex items-center justify-center font-playfair text-lg">
-                        {index + 1}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-playfair text-foreground mb-3">
-                          {step.title}
-                        </h3>
-                        <p className="text-muted-foreground font-light leading-relaxed">{step.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        </ScrollReveal>
+        <section className="mb-24">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-playfair text-foreground mb-12"
+          >
+            Processo
+          </motion.h2>
+          <Timeline steps={piece.processSteps} />
+        </section>
 
         {/* Gallery */}
-        <ScrollReveal>
-          <section className="mb-24">
+        {piece.gallery.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="mb-24"
+          >
             <h2 className="text-4xl font-playfair text-foreground mb-12">Galeria</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {piece.gallery.map((image, index) => (
-                <div key={index} className="relative h-[500px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
-                  <img
-                    src={image}
-                    alt={`${piece.name} ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+            <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg">
+              <MediaCarousel items={piece.gallery} />
             </div>
-          </section>
-        </ScrollReveal>
+          </motion.section>
+        )}
 
         {/* Materials & Care */}
-        <div className="grid md:grid-cols-2 gap-16 mb-24">
-          <ScrollReveal>
-            <section>
-              <h2 className="text-3xl font-playfair text-foreground mb-8">Materiais</h2>
-              <ul className="space-y-3">
-                {piece.materials.map((material, index) => (
-                  <li key={index} className="text-muted-foreground flex items-start font-light text-lg">
-                    <span className="mr-3 text-accent">•</span>
-                    {material}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <section>
-              <h2 className="text-3xl font-playfair text-foreground mb-8">Cuidados</h2>
-              <ul className="space-y-3">
-                {piece.care.map((instruction, index) => (
-                  <li key={index} className="text-muted-foreground flex items-start font-light text-lg">
-                    <span className="mr-3 text-accent">•</span>
-                    {instruction}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </ScrollReveal>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-24"
+        >
+          <h2 className="text-3xl font-playfair text-foreground mb-8">Materiais e Cuidados</h2>
+          <p className="text-lg text-muted-foreground leading-relaxed font-light">
+            {piece.materialsCare}
+          </p>
+        </motion.div>
 
         {/* CTA */}
-        <ScrollReveal>
-          <div className="text-center py-16 border-t border-border/50">
-            <h3 className="text-3xl font-playfair text-foreground mb-6">
-              Interessado nesta peça?
-            </h3>
-            <p className="text-muted-foreground mb-8 font-light text-lg">
-              Entre em contato para saber mais sobre disponibilidade
-            </p>
-            <Button size="lg" onClick={() => setIsModalOpen(true)} className="shadow-soft-lg hover-lift">
-              Registrar Interesse
-            </Button>
-          </div>
-        </ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center py-16 border-t border-border/50"
+        >
+          <h3 className="text-3xl font-playfair text-foreground mb-6">
+            Interessado nesta peça?
+          </h3>
+          <p className="text-muted-foreground mb-8 font-light text-lg">
+            Entre em contato para saber mais sobre disponibilidade
+          </p>
+          <Button size="lg" onClick={() => setIsModalOpen(true)} className="shadow-soft-lg hover-lift">
+            Registrar Interesse
+          </Button>
+        </motion.div>
       </div>
 
       <InterestModal
@@ -177,7 +196,8 @@ const PieceDetail = () => {
         onClose={() => setIsModalOpen(false)}
         pieceName={piece.name}
       />
-    </div>
+      </div>
+    </>
   );
 };
 
