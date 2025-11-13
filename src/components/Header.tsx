@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import NavLink from './NavLink';
 
 const Header = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
@@ -53,7 +55,7 @@ const Header = () => {
             to="/" 
             className={cn(
               "text-2xl font-playfair tracking-widest transition-colors duration-300",
-              isScrolled ? "text-foreground" : "text-background mix-blend-difference"
+              isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
             )}
           >
             AMAÉ
@@ -67,7 +69,7 @@ const Header = () => {
                   to={link.to}
                   className={cn(
                     "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300",
-                    isScrolled ? "text-foreground/70" : "text-background/90 mix-blend-difference"
+                    isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
                   )}
                 >
                   {link.label}
@@ -80,7 +82,7 @@ const Header = () => {
           <button
             className={cn(
               "md:hidden transition-colors duration-300",
-              isScrolled ? "text-foreground" : "text-background mix-blend-difference"
+              isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
