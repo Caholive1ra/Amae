@@ -23,12 +23,12 @@ const EditorialHero = ({
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         {media.type === 'image' ? (
           <motion.img
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
             src={media.src}
             alt={media.alt || title}
@@ -50,21 +50,21 @@ const EditorialHero = ({
         {overlay && <div className="absolute inset-0 gradient-overlay-dark" />}
       </div>
       
-      <div className={`relative z-10 container mx-auto px-4 flex flex-col ${alignmentClasses[alignment]}`}>
+      <div className={`relative z-10 container mx-auto px-6 md:px-4 flex flex-col ${alignmentClasses[alignment]}`}>
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl font-playfair text-background mb-6 leading-tight max-w-5xl"
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-playfair text-background mb-4 md:mb-6 leading-tight max-w-5xl px-2"
         >
           {title}
         </motion.h1>
         {subtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xl md:text-2xl text-background/90 font-light max-w-3xl"
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="text-lg sm:text-xl md:text-2xl text-background/90 font-light max-w-3xl px-2"
           >
             {subtitle}
           </motion.p>

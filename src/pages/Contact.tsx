@@ -28,24 +28,24 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <div className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-20">
+      <div className="container mx-auto px-6 md:px-4 max-w-6xl">
         <ScrollReveal>
-          <div className="text-center mb-24">
-            <h1 className="text-6xl md:text-7xl font-playfair text-foreground mb-8 leading-tight">
+          <div className="text-center mb-16 md:mb-24">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-foreground mb-6 md:mb-8 leading-tight">
               Contato
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light px-4">
               Entre em contato conosco para conhecer mais sobre o ateliê ou fazer uma encomenda personalizada
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-20 items-start">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-start">
           {/* Image & Info */}
-          <ScrollReveal delay={100}>
-            <div className="space-y-10">
-              <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
+          <ScrollReveal delay={50}>
+            <div className="space-y-8 md:space-y-10">
+              <div className="relative h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
                 <img
                   src={aboutAtelier}
                   alt="Ateliê Amaé"
@@ -53,30 +53,30 @@ const Contact = () => {
                 />
               </div>
 
-              <div className="space-y-8">
-                <h2 className="text-3xl font-playfair text-foreground">O Ateliê</h2>
-                <p className="text-muted-foreground leading-relaxed font-light text-lg">
+              <div className="space-y-6 md:space-y-8 px-2">
+                <h2 className="text-2xl sm:text-3xl font-playfair text-foreground">O Ateliê</h2>
+                <p className="text-muted-foreground leading-relaxed font-light text-base sm:text-lg">
                   Cada peça Amaé é criada com cuidado e atenção personalizada. 
                   Trabalhamos com encomendas sob medida, respeitando o tempo necessário 
                   para que cada criação seja única e especial.
                 </p>
 
-                <div className="space-y-5 pt-4">
+                <div className="space-y-4 md:space-y-5 pt-2 md:pt-4">
                   <a
                     href="mailto:contato@amae.com"
-                    className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
+                    className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 min-h-[44px]"
                   >
-                    <Mail size={22} />
-                    <span className="font-light">contato@amae.com</span>
+                    <Mail size={20} className="md:w-[22px] md:h-[22px] flex-shrink-0" />
+                    <span className="font-light text-sm sm:text-base">contato@amae.com</span>
                   </a>
                   <a
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
+                    className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 min-h-[44px]"
                   >
-                    <Instagram size={22} />
-                    <span className="font-light">@amae.moda</span>
+                    <Instagram size={20} className="md:w-[22px] md:h-[22px] flex-shrink-0" />
+                    <span className="font-light text-sm sm:text-base">@amae.moda</span>
                   </a>
                 </div>
               </div>
@@ -84,8 +84,8 @@ const Contact = () => {
           </ScrollReveal>
 
           {/* Form */}
-          <ScrollReveal delay={300}>
-            <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 p-10 rounded-lg shadow-soft">
+          <ScrollReveal delay={150}>
+            <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8 bg-card/50 p-6 md:p-10 rounded-lg shadow-soft">
               <div className="space-y-3">
                 <Label htmlFor="name" className="text-base font-lato">Nome</Label>
                 <Input
