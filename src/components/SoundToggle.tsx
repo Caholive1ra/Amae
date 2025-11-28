@@ -28,8 +28,7 @@ const SoundToggle = () => {
       setIsPlaying(false);
     } else {
       audioRef.current.play().catch(() => {
-        // Handle autoplay restrictions
-        console.log('Autoplay prevented');
+        // Handle autoplay restrictions silently
       });
       setIsPlaying(true);
     }

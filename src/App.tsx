@@ -43,7 +43,7 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename="/Amae">
             <div className="min-h-screen flex flex-col">
               <Preloader />
               <ReadingProgress />
