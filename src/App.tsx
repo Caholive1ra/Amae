@@ -9,7 +9,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ReadingProgress from "./components/ReadingProgress";
-import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
 import SoundToggle from "./components/SoundToggle";
 import Home from "./pages/Home";
@@ -45,10 +44,9 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <div className="min-h-screen flex flex-col custom-cursor">
+            <div className="min-h-screen flex flex-col">
               <Preloader />
               <ReadingProgress />
-              <CustomCursor />
               <Header />
               <ScrollToTop />
               <main className="flex-1">

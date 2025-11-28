@@ -4,6 +4,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { collections } from '@/data/collections';
 import SEO from '@/components/SEO';
+import type { Piece } from '@/types';
 
 const Pieces = () => {
   const pieces = collections.flatMap(c => c.pieces);
@@ -42,7 +43,12 @@ const Pieces = () => {
   );
 };
 
-const PieceCard = ({ piece, index }: { piece: any; index: number }) => {
+interface PieceCardProps {
+  piece: Piece;
+  index: number;
+}
+
+const PieceCard = ({ piece, index }: PieceCardProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

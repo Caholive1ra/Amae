@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import type { PanInfo } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { MediaItem } from '@/types';
+
+import type { MediaItem } from '@/types';
 import { Button } from './ui/button';
 
 interface MediaCarouselProps {
@@ -13,19 +15,34 @@ interface MediaCarouselProps {
 const MediaCarousel = ({ items, autoPlay = false, interval = 5000 }: MediaCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
+  const totalItems = items.length;
 
-  const next = () => setCurrentIndex((prev) => (prev + 1) % items.length);
-  const previous = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  const next = () => setCurrentIndex((prev) => (prev + 1) % totalItems);
+  const previous = () => setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
 
-  // Touch/Swipe gesture handling
-  const handleDragEnd = (_: any, info: any) => {
+  useEffect(() => {
+    if (!autoPlay || totalItems <= 1) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalItems);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [autoPlay, interval, totalItems]);
+
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (info.offset.x > 100) {
       previous();
     } else if (info.offset.x < -100) {
       next();
     }
   };
+
+  if (totalItems === 0) {
+    return null;
+  }
 
   return (
     <div ref={containerRef} className="relative w-full h-full group touch-pan-y">
@@ -40,7 +57,7 @@ const MediaCarousel = ({ items, autoPlay = false, interval = 5000 }: MediaCarous
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
           onDragEnd={handleDragEnd}
-          className="w-full h-full cursor-grab active:cursor-grabbing"
+          className="w-full h-full"
         >
           {items[currentIndex].type === 'image' ? (
             <img
@@ -56,7 +73,7 @@ const MediaCarousel = ({ items, autoPlay = false, interval = 5000 }: MediaCarous
               loop
               playsInline
               className="w-full h-full object-cover"
-              aria-label={items[currentIndex].alt || `Vídeo ${currentIndex + 1}`}
+              aria-label={items[currentIndex].alt || `Video ${currentIndex + 1}`}
             >
               <source src={items[currentIndex].src} type="video/mp4" />
             </video>
@@ -64,7 +81,7 @@ const MediaCarousel = ({ items, autoPlay = false, interval = 5000 }: MediaCarous
         </motion.div>
       </AnimatePresence>
 
-      {items.length > 1 && (
+      {totalItems > 1 && (
         <>
           <Button
             variant="ghost"
@@ -80,7 +97,7 @@ const MediaCarousel = ({ items, autoPlay = false, interval = 5000 }: MediaCarous
             size="icon"
             onClick={next}
             className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background opacity-0 md:group-hover:opacity-100 transition-opacity min-h-[44px] min-w-[44px]"
-            aria-label="Próxima imagem"
+            aria-label="Proxima imagem"
           >
             <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
