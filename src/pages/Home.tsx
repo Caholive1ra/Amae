@@ -65,7 +65,6 @@ const Home = () => {
               src={heroBackground}
               alt="Ama? - Moda Viva"
               className="w-full h-full object-cover"
-              loading="eager"
             />
             <div className="absolute inset-0 gradient-overlay-dark" />
           </motion.div>
