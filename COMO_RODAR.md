@@ -58,21 +58,29 @@ npm run preview
 
 ## 📦 Deploy no GitHub Pages
 
-### Opção 1: Usando o Script de Deploy (Recomendado)
+### ✅ Deploy Automático (Recomendado)
 
-1. **Certifique-se de que o repositório está configurado no GitHub**
+O projeto está configurado com **GitHub Actions** para fazer deploy automático:
 
-2. **Execute o comando de deploy:**
-
+1. **Faça commit e push na branch `main`:**
 ```powershell
-npm run deploy
+git add .
+git commit -m "Sua mensagem"
+git push origin main
 ```
 
-Este comando irá:
-- Fazer o build do projeto (`npm run build`)
-- Publicar a pasta `dist/` na branch `gh-pages` do seu repositório
+2. **O GitHub Actions fará o deploy automaticamente!**
+   - Detecta o push na branch `main`
+   - Faz o build do projeto
+   - Faz deploy para GitHub Pages
+   - Site fica disponível em alguns minutos
 
-### Opção 2: Deploy Manual
+3. **Configure o GitHub Pages:**
+   - Vá em **Settings** > **Pages**
+   - Em **Source**, selecione **GitHub Actions** (não "Deploy from a branch")
+   - Salve as alterações
+
+### ⚠️ Deploy Manual (Método Antigo - Não Recomendado)
 
 1. **Faça o build:**
 
