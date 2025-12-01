@@ -167,7 +167,7 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6 leading-tight">
                   Coleção Memória da Terra
                 </h2>
-                <p className="text-xl text-white max-w-3xl mx-auto font-light">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
                   coleção de primavera 25 a impermanencia como ponto de transformação
                 </p>
               </div>

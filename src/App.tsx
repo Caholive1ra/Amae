@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import Header from "./components/Header";
@@ -48,7 +48,7 @@ const App = () => {
             <ProductProvider>
               <Toaster />
               <Sonner />
-              <BrowserRouter basename={basePath}>
+              <HashRouter>
                 <div className="min-h-screen flex flex-col">
                   <Preloader />
                   <ReadingProgress />
@@ -70,7 +70,7 @@ const App = () => {
                   </main>
                   <Footer />
                 </div>
-              </BrowserRouter>
+              </HashRouter>
             </ProductProvider>
           </TooltipProvider>
         </HelmetProvider>
