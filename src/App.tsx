@@ -34,8 +34,6 @@ function ScrollToTop() {
 }
 
 const App = () => {
-  const basePath = import.meta.env.VITE_BASE_PATH || "/";
-
   useEffect(() => {
     document.documentElement.classList.add('smooth-scroll');
   }, []);
