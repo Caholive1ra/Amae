@@ -13,7 +13,7 @@ const Collections = () => {
               Coleções
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
-              Cada coleção é uma história da terra, traduzida em cores e formas que celebram a natureza
+              coleção de primavera 25 a impermanencia como ponto de transformação
             </p>
           </div>
         </ScrollReveal>
@@ -46,7 +46,7 @@ const Collections = () => {
                         {collection.concept}
                       </p>
                       <Button asChild size="lg" className="shadow-soft hover-lift">
-                        <Link to="/pecas">Ver Peças</Link>
+                        <Link to="/pecas">Encomendar</Link>
                       </Button>
                     </div>
                   </ScrollReveal>
@@ -62,7 +62,7 @@ const Collections = () => {
                         {collection.concept}
                       </p>
                       <Button asChild size="lg" className="shadow-soft hover-lift">
-                        <Link to="/pecas">Ver Peças</Link>
+                        <Link to="/pecas">Encomendar</Link>
                       </Button>
                     </div>
                   </ScrollReveal>

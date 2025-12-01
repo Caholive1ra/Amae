@@ -7,7 +7,11 @@ const About = () => {
   const manifestoSections = [
     {
       title: 'A Origem da Amaé',
-      content: 'Amaé nasce do encontro entre corpo e solo, entre o fazer e o florescer. Cada peça carrega a memória da terra, traduzida em cores que nascem de flores, raízes e sementes.',
+      content: `Amaé nasceu do encontro entre duas mulheres, duas designers e duas formas de sentir o mundo — unidas pela mesma certeza: a natureza é mestra, e o tempo é parte do processo.
+Somos movidas pela curiosidade, pela contemplação e pela delicadeza do fazer manual. Amamos a terra, as texturas, os pigmentos naturais, e acreditamos que tudo o que é criado com calma, consciência e afeto permanece. Amaé existe para reconectar o vestir ao tempo natural das coisas.
+É um lembrete de que tudo tem ritmo, tudo tem transformação e que o que nasce do cuidado floresce — no corpo, na memória e na vida.
+Criamos para mulheres reais — sensíveis e potentes, urbanas e naturais, que vivem a intensidade do agora, mas buscam pausa, presença e significado. Mulheres que veem moda não como tendência, mas como extensão da identidade e do caminho que trilham.
+Cada peça Amaé é desenvolvida com processos responsáveis, materiais naturais e acabamentos pensados para durar. Não aceleramos o tempo. Nós o respeitamos.`,
       image: heroHome,
     },
     {

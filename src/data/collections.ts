@@ -11,8 +11,8 @@ export const collections: Collection[] = [
     id: 'memoria-da-terra',
     slug: 'memoria-da-terra',
     name: 'Memória da Terra',
-    description: 'Onde o tempo da natureza se transforma em veste',
-    concept: 'Cada peça carrega as camadas da terra — sedimentos de cor, erosão do tempo, a paciência do pigmento. Inspirada na Chapada Diamantina, onde a rocha guarda memória e a água esculpe vales, esta coleção celebra a impermanência como a mais bela forma de existir.',
+    description: 'a impermanência não é uma perda, mas uma transformação contínua, Cada instante, ao desaparecer, deixa marcas e também memórias que se integram em um ciclo de transformação.',
+    concept: 'a impermanência não é uma perda, mas uma transformação contínua, Cada instante, ao desaparecer, deixa marcas e também memórias que se integram em um ciclo de transformação.',
     hero: {
       type: 'image',
       src: collectionHero,

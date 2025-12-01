@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ScrollReveal';
 import PoeticPause from '@/components/PoeticPause';
 import SEO from '@/components/SEO';
-import heroHome from '@/assets/hero-home.jpg';
+import heroBackground from '@/assets/foto-inicio.jpg';
 import collectionHero from '@/assets/collection-hero.jpg';
 import processDye from '@/assets/process-dye.jpg';
 import processCrochet from '@/assets/process-crochet.jpg';
@@ -50,10 +50,10 @@ const Home = () => {
   };
 
   const processes = [
-    { title: 'Tingimento Natural', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
-    { title: 'Crochê Artesanal', description: 'Cada ponto carrega tempo e cuidado', image: processCrochet },
-    { title: 'Modelagem Única', description: 'Formas orgânicas que respeitam o corpo', image: collectionHero },
-    { title: 'Tempo', description: 'O processo que honra a impermanência', image: aboutAtelier },
+    { title: 'descubra os pigmentos usados na última coleção', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
+    { title: 'descubra os materiais tipos de ponto e muito mais', description: 'Cada ponto carrega tempo e cuidado', image: processCrochet },
+    { title: 'tecidos naturais- aprenda a identificar e as caracteristicas de tecidos naturais', description: 'Formas orgânicas que respeitam o corpo', image: collectionHero },
+    { title: 'cuidados- cuidados com sua peça 100% natural', description: 'O processo que honra a impermanência', image: aboutAtelier },
   ];
 
   return (
@@ -72,8 +72,8 @@ const Home = () => {
           >
             <motion.img
               style={{ scale: heroScale }}
-              src={heroHome}
-              alt="Amaé - Moda Viva"
+              src={heroBackground}
+              alt="Ama? - Moda Viva"
               className="w-full h-full object-cover"
               loading="eager"
             />
@@ -81,16 +81,16 @@ const Home = () => {
           </motion.div>
           
           <motion.div 
-            className="relative z-10 text-center px-4"
+            className="relative z-10 text-center px-4 mt-20 md:mt-32"
             style={{ opacity: heroOpacity }}
           >
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-playfair text-background mb-6 leading-tight tracking-wide"
+              className="text-4xl md:text-6x1 lg:text-7xl font-playfair text-background mb-6 leading-tight tracking-wide"
             >
-              AMAÉ É a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
+              AMAÉ é a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -111,7 +111,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-2xl md:text-3xl font-playfair text-foreground text-center max-w-3xl"
           >
-            Descubra mais sobre a Amaé
+            descubra mais sobre a amaé
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,7 +119,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Button asChild size="lg" className="shadow-soft hover-lift">
-              <Link to="/sobre">Descubra mais sobre a Amaé</Link>
+              <Link to="/sobre">descubra mais sobre a amaé</Link>
             </Button>
           </motion.div>
         </div>
@@ -154,7 +154,7 @@ const Home = () => {
                       tingida com pigmentos naturais que carregam a memória da terra.
                     </p>
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
-                      A roupa registra o passar do tempo criando histórias junto com quem a veste, 
+                      registra o passar do tempo criando historias junto com quem a veste. celebrando a vida e a impermanencia da natureza
                       celebrando a vida e a impermanência da natureza.
                     </p>
                   </div>
@@ -178,8 +178,8 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6 leading-tight">
                   Coleção Memória da Terra
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
-                  Peças únicas que carregam o tempo e a essência da natureza
+                <p className="text-xl text-white max-w-3xl mx-auto font-light">
+                  coleção de primavera 25 a impermanencia como ponto de transformação
                 </p>
               </div>
             </ScrollReveal>
@@ -235,7 +235,7 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6">
                   O Processo
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
+                <p className="text-xl text-white max-w-3xl mx-auto font-light">
                   Cada etapa honra o tempo e a natureza
                 </p>
               </div>
@@ -276,7 +276,7 @@ const Home = () => {
             <ScrollReveal delay={400}>
               <div className="text-center mt-16">
                 <Button asChild variant="outline" size="lg" className="hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                  <Link to="/processos">Explorar Processos</Link>
+                  <Link to="/processos">baixe nosso caderno de experimentações de pigmentos</Link>
                 </Button>
               </div>
             </ScrollReveal>
@@ -288,3 +288,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
