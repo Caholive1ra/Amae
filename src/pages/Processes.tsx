@@ -85,6 +85,7 @@ const Processes = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };

@@ -282,6 +282,42 @@ const Home = () => {
             </ScrollReveal>
           </div>
         </section>
+
+        <section className="py-24 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <ScrollReveal>
+                <div className="space-y-6 px-2 md:px-0 md:max-w-xl">
+                  <p className="text-xs sm:text-sm text-accent uppercase tracking-[0.3em] font-lato font-light">
+                    di?rio vivo
+                  </p>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair text-foreground leading-tight">
+                    Assista ao processo em movimento
+                  </h2>
+                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+                    Um registro vertical direto do ateli? Ama?. Aperte o play para acompanhar as m?os, os pigmentos e o
+                    tempo que d?o vida a cada pe?a.
+                  </p>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={150}>
+                <div className="w-full md:max-w-sm lg:max-w-md md:justify-self-end">
+                  <div className="relative rounded-3xl overflow-hidden shadow-soft-lg" style={{ paddingBottom: '177.78%', height: 0 }}>
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/kCXds_FbF9w"
+                      title="Processo Ama?"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
       </div>
     </>
   );

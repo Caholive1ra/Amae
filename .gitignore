@@ -22,8 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
-=======
 
 # Temporary files
 *.tmp
@@ -33,4 +31,3 @@ merge-*.ps1
 *MESCLAR*.md
 *RESUMO*.md
 COMANDOS*.txt
->>>>>>> main
