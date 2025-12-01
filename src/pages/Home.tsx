@@ -6,17 +6,13 @@ import PoeticPause from '@/components/PoeticPause';
 import SEO from '@/components/SEO';
 import heroBackground from '@/assets/foto-inicio.jpg';
 import collectionHero from '@/assets/collection-hero.jpg';
-import processDye from '@/assets/process-dye.jpg';
-import processCrochet from '@/assets/process-crochet.jpg';
-import aboutAtelier from '@/assets/about-atelier.jpg';
+import aboutAtelier from '@/assets/atelie-image.jpeg';
+import process1 from '@/assets/process1.jpeg';
+import process2 from '@/assets/process2.jpeg';
+import process3 from '@/assets/process3.jpeg';
 import { useRef } from 'react';
-import { useProduct } from '@/contexts/ProductContext';
-import blusaMangaUnicaHibisco from '@/assets/blusa manga única hibisco.jpg';
-import calcaRetaBabadosCrocheCafe from '@/assets/calça reta babados de crochê café.jpg';
-import blusaRegataNervurasCafe from '@/assets/blusa regata nervuras café feita em algodão.jpg';
-import saiaComCamadasFeijao from '@/assets/saia com camadas feijão.jpg';
-import blusaOmbroCamadasFeijao from '@/assets/blusa ombro em camadas feijão.jpg';
-import calcaComElasticoFluida from '@/assets/calça com elastico fluida.jpg';
+import { useProduct } from '@/contexts/ProductContext'; 
+import { featuredPieces } from '@/data/products';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -31,15 +27,6 @@ const Home = () => {
   const navigate = useNavigate();
   const { setSelectedProduct } = useProduct();
 
-  const featuredPieces = [
-    { id: 'blusa-manga-unica-hibisco', name: 'Blusa Manga Única Hibisco', image: blusaMangaUnicaHibisco },
-    { id: 'calca-reta-babados-croche-cafe', name: 'Calça Reta Babados de Crochê Café', image: calcaRetaBabadosCrocheCafe },
-    { id_v3: 'blusa-regata-nervuras-cafe', name: 'Blusa Regata Nervuras Café feita em Algodão', image: blusaRegataNervurasCafe },
-    { id: 'saia-com-camadas-feijao', name: 'Saia com Camadas Feijão', image: saiaComCamadasFeijao },
-    { id: 'blusa-ombro-em-camadas-feijao', name: 'Blusa Ombro em Camadas Feijão', image: blusaOmbroCamadasFeijao },
-    { id: 'calca-com-elastico-fluida', name: 'Calça com Elástico Fluida', image: calcaComElasticoFluida },
-  ];
-
   const handleEncomendar = (pieceName: string) => {
     setSelectedProduct(pieceName);
     navigate('/contato');
@@ -53,9 +40,9 @@ const Home = () => {
   };
 
   const processes = [
-    { title: 'descubra os pigmentos usados na última coleção', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
-    { title: 'descubra os materiais tipos de ponto e muito mais', description: 'Cada ponto carrega tempo e cuidado', image: processCrochet },
-    { title: 'tecidos naturais- aprenda a identificar e as caracteristicas de tecidos naturais', description: 'Formas orgânicas que respeitam o corpo', image: collectionHero },
+    { title: 'descubra os pigmentos usados na última coleção', description: 'Pigmentos da terra e plantas da Chapada', image: process1 },
+    { title: 'descubra os materiais tipos de ponto e muito mais', description: 'Cada ponto carrega tempo e cuidado', image: process2 },
+    { title: 'tecidos naturais- aprenda a identificar e as caracteristicas de tecidos naturais', description: 'Formas orgânicas que respeitam o corpo', image: process3 },
     { title: 'cuidados- cuidados com sua peça 100% natural', description: 'O processo que honra a impermanência', image: aboutAtelier },
   ];
 
@@ -238,7 +225,7 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6">
                   O Processo
                 </h2>
-                <p className="text-xl text-white max-w-3xl mx-auto font-light">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
                   Cada etapa honra o tempo e a natureza
                 </p>
               </div>

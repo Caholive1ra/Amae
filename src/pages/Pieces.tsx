@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { collections } from '@/data/collections';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import InterestModal from '@/components/InterestModal';
 import type { Piece } from '@/types';
+import { allProducts } from '@/data/products';
 
 const Pieces = () => {
-  const pieces = collections.flatMap(c => c.pieces);
+  const pieces = allProducts;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPiece, setSelectedPiece] = useState('');
 
@@ -42,7 +42,7 @@ const Pieces = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {pieces.slice(0, 6).map((piece, index) => (
+            {pieces.map((piece, index) => (
               <PieceCard key={piece.id} piece={piece} index={index} onOrderClick={handleOrderClick} />
             ))}
           </div>
