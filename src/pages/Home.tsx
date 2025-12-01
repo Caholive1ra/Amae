@@ -9,11 +9,14 @@ import collectionHero from '@/assets/collection-hero.jpg';
 import processDye from '@/assets/process-dye.jpg';
 import processCrochet from '@/assets/process-crochet.jpg';
 import aboutAtelier from '@/assets/about-atelier.jpg';
-import piece1 from '@/assets/piece-1.jpg';
-import piece2 from '@/assets/piece-2.jpg';
-import piece3 from '@/assets/piece-3.jpg';
 import { useRef } from 'react';
 import { useProduct } from '@/contexts/ProductContext';
+import blusaMangaUnicaHibisco from '@/assets/blusa manga única hibisco.jpg';
+import calcaRetaBabadosCrocheCafe from '@/assets/calça reta babados de crochê café.jpg';
+import blusaRegataNervurasCafe from '@/assets/blusa regata nervuras café feita em algodão.jpg';
+import saiaComCamadasFeijao from '@/assets/saia com camadas feijão.jpg';
+import blusaOmbroCamadasFeijao from '@/assets/blusa ombro em camadas feijão.jpg';
+import calcaComElasticoFluida from '@/assets/calça com elastico fluida.jpg';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -29,12 +32,12 @@ const Home = () => {
   const { setSelectedProduct } = useProduct();
 
   const featuredPieces = [
-    { id: 'vestido-sol-poente', name: 'Vestido Sol Poente', image: piece1 },
-    { id: 'top-crochet-areia', name: 'Top Crochê Areia', image: piece2 },
-    { id: 'calca-cafe', name: 'Calça Café', image: piece3 },
-    { id: 'vestido-natural', name: 'Vestido Natural', image: piece1 },
-    { id: 'blusa-terra', name: 'Blusa Terra', image: piece2 },
-    { id: 'saia-memoria', name: 'Saia Memória', image: piece3 },
+    { id: 'blusa-manga-unica-hibisco', name: 'Blusa Manga Única Hibisco', image: blusaMangaUnicaHibisco },
+    { id: 'calca-reta-babados-croche-cafe', name: 'Calça Reta Babados de Crochê Café', image: calcaRetaBabadosCrocheCafe },
+    { id_v3: 'blusa-regata-nervuras-cafe', name: 'Blusa Regata Nervuras Café feita em Algodão', image: blusaRegataNervurasCafe },
+    { id: 'saia-com-camadas-feijao', name: 'Saia com Camadas Feijão', image: saiaComCamadasFeijao },
+    { id: 'blusa-ombro-em-camadas-feijao', name: 'Blusa Ombro em Camadas Feijão', image: blusaOmbroCamadasFeijao },
+    { id: 'calca-com-elastico-fluida', name: 'Calça com Elástico Fluida', image: calcaComElasticoFluida },
   ];
 
   const handleEncomendar = (pieceName: string) => {
@@ -324,9 +327,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-
