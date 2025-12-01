@@ -4,7 +4,6 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import NavLink from './NavLink';
-import { Button } from './ui/button';
 import logoOficial from '@/assets/logo_oficial.png';
 
 const Header = () => {
@@ -76,42 +75,10 @@ const Header = () => {
                 </li>
               ))}
             </ul>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className={cn(
-                "transition-colors duration-300",
-                isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
-              )}
-              aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5" />
-              ) : (
-                <Sun className="w-5 h-5" />
-              )}
-            </Button>
           </div>
 
-          {/* Mobile Menu Button and Theme Toggle */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className={cn(
-                "transition-colors duration-300",
-                isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
-              )}
-              aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
-            >
-              {theme === 'light' ? (
-                <Moon className="w-5 h-5" />
-              ) : (
-                <Sun className="w-5 h-5" />
-              )}
-            </Button>
             <button
               className={cn(
                 "transition-colors duration-300",

@@ -56,8 +56,11 @@ const Home = () => {
       <div className="min-h-screen">
         {/* Hero Section with Parallax */}
         <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-          <motion.div 
+          <motion.div
             className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{ opacity: heroOpacity }}
           >
             <motion.img
