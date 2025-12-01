@@ -1,0 +1,30 @@
+=== COMANDO PARA MESCLAR main → gh-pages ===
+
+O erro "refusing to merge unrelated histories" acontece porque as branches
+têm históricos completamente diferentes.
+
+SOLUÇÃO: Use a flag --allow-unrelated-histories
+
+Execute estes comandos:
+
+1. Certifique-se de estar na gh-pages:
+   git checkout gh-pages
+
+2. Atualize a gh-pages:
+   git pull origin gh-pages
+
+3. Mescle com a flag especial:
+   git merge main --allow-unrelated-histories --no-ff -m "Merge main into gh-pages: trazer código fonte completo"
+
+4. Se houver conflitos, resolva e depois:
+   git add .
+   git commit -m "Resolve merge conflicts"
+
+5. Faça push:
+   git push origin gh-pages
+
+=== OU USE O SCRIPT ===
+
+Execute:
+.\merge-final.ps1
+

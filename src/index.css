@@ -1,0 +1,360 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Amaé Brand Colors - Natural & Organic Tones */
+    --background: 30 33% 98%; /* Off-white #FAF8F6 */
+    --foreground: 270 25% 28%; /* Roxo profundo #4C345A */
+
+    --card: 30 33% 98%;
+    --card-foreground: 270 25% 28%;
+
+    --popover: 30 33% 98%;
+    --popover-foreground: 270 25% 28%;
+
+    /* Primary: Roxo Profundo */
+    --primary: 270 25% 28%;
+    --primary-foreground: 30 33% 98%;
+
+    /* Secondary: Verde-água suave */
+    --secondary: 160 18% 65%;
+    --secondary-foreground: 270 25% 28%;
+
+    /* Muted: Cinza quente */
+    --muted: 30 15% 95%;
+    --muted-foreground: 30 12% 67%;
+
+    /* Accent: Dourado terroso */
+    --accent: 35 38% 62%;
+    --accent-foreground: 270 25% 28%;
+
+    /* Nature: Verde-água */
+    --nature: 160 18% 65%;
+    --nature-foreground: 270 25% 28%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 30 33% 98%;
+
+    --border: 30 12% 90%;
+    --input: 30 12% 90%;
+    --ring: 270 25% 28%;
+
+    --radius: 0.25rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 35 15% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 270 25% 15%;
+    --foreground: 30 33% 98%;
+
+    --card: 270 25% 18%;
+    --card-foreground: 30 33% 98%;
+
+    --popover: 270 25% 18%;
+    --popover-foreground: 30 33% 98%;
+
+    --primary: 160 18% 65%;
+    --primary-foreground: 270 25% 28%;
+
+    --secondary: 270 25% 25%;
+    --secondary-foreground: 30 33% 98%;
+
+    --muted: 270 20% 22%;
+    --muted-foreground: 30 12% 67%;
+
+    --accent: 35 38% 62%;
+    --accent-foreground: 270 25% 28%;
+
+    --nature: 160 18% 55%;
+    --nature-foreground: 270 25% 28%;
+
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 30 33% 98%;
+
+    --border: 270 20% 25%;
+    --input: 270 20% 25%;
+    --ring: 160 18% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 300;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* Fluid Typography with clamp */
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.7;
+  }
+
+  /* Touch-friendly sizing */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+@layer utilities {
+  /* Fade In Animations */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+
+  /* Progress bar */
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--primary)));
+    z-index: 9999;
+    transform-origin: left;
+  }
+
+  /* Page transition overlay */
+  .page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Poetic pause */
+  .poetic-pause {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  /* Smooth scroll */
+  html.smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll Reveal */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Parallax - enhanced */
+  .parallax {
+    transform: translateY(var(--parallax-offset, 0));
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+
+  /* Disable parallax on mobile for performance */
+  @media (max-width: 768px) {
+    .parallax {
+      transform: none !important;
+    }
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Cinematic text float */
+  .text-float {
+    animation: textFloat 8s ease-in-out infinite;
+  }
+
+  /* Hover Effects - enhanced */
+  .hover-lift {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px hsl(var(--foreground) / 0.15);
+  }
+
+  /* Interactive card hover */
+  .card-interactive {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+  }
+
+  .card-interactive:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 48px -12px hsl(var(--foreground) / 0.2);
+  }
+
+  /* Image Zoom on Hover */
+  .image-zoom {
+    overflow: hidden;
+  }
+
+  .image-zoom img {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-zoom:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Gradient Overlays */
+  .gradient-overlay-light {
+    background: linear-gradient(180deg, rgba(250, 248, 246, 0) 0%, rgba(250, 248, 246, 0.8) 100%);
+  }
+
+  .gradient-overlay-dark {
+    background: linear-gradient(180deg, rgba(76, 52, 90, 0.3) 0%, rgba(76, 52, 90, 0.7) 100%);
+  }
+
+  /* Soft Shadows */
+  .shadow-soft {
+    box-shadow: 0 10px 30px -5px rgba(76, 52, 90, 0.1);
+  }
+
+  .shadow-soft-lg {
+    box-shadow: 0 20px 50px -10px rgba(76, 52, 90, 0.15);
+  }
+
+  /* Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Breathing Text Animation */
+  @keyframes breathe {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  /* Text Float Animation */
+  @keyframes textFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
