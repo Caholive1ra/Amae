@@ -11,8 +11,8 @@ export const collections: Collection[] = [
     id: 'memoria-da-terra',
     slug: 'memoria-da-terra',
     name: 'Memória da Terra',
-    description: 'Onde o tempo da natureza se transforma em veste',
-    concept: 'Cada peça carrega as camadas da terra — sedimentos de cor, erosão do tempo, a paciência do pigmento. Inspirada na Chapada Diamantina, onde a rocha guarda memória e a água esculpe vales, esta coleção celebra a impermanência como a mais bela forma de existir.',
+    description: 'a impermanência não é uma perda, mas uma transformação contínua, Cada instante, ao desaparecer, deixa marcas e também memórias que se integram em um ciclo de transformação.',
+    concept: 'a impermanência não é uma perda, mas uma transformação contínua, Cada instante, ao desaparecer, deixa marcas e também memórias que se integram em um ciclo de transformação.',
     hero: {
       type: 'image',
       src: collectionHero,
@@ -133,7 +133,122 @@ export const collections: Collection[] = [
         ],
         tags: ['tingimento natural', 'café', 'linho', 'calça ampla'],
         image: piece3
+      },
+      {
+        id: 'vestido-natural',
+        slug: 'vestido-natural',
+        name: 'Vestido Natural',
+        description: 'Vestido leve tingido com camomila e ch? verde',
+        collection: 'Mem?ria da Terra',
+        conceptText: 'A leveza do campo transformada em gesto. O Vestido Natural mistura camadas transl?cidas e pigmentos sussurrados para lembrar o frescor do amanhecer.',
+        colorOrigin: {
+          name: 'Camomila e ch? verde',
+          description: 'Flores e folhas s?o maceradas em infus?es demoradas, liberando tons dourados suaves e verdes delicados. Cada banho adiciona transpar?ncia e profundidade.'
+        },
+        materialsCare: 'Voil de algod?o org?nico tingido com infus?es bot?nicas. Lavar ? m?o com sab?o neutro e secar ? sombra para preservar a suavidade do pigmento.',
+        processSteps: [
+          {
+            title: 'Colheita bot?nica',
+            description: 'Camomila e ch? verde s?o colhidos ainda frescos, no primeiro sol da manh?.'
+          },
+          {
+            title: 'Infus?o lenta',
+            description: 'Flores e folhas descansam na ?gua aquecida por horas, soltando toda a tonalidade dourada.',
+            media: [{ type: 'image', src: processDye, alt: 'Infus?o bot?nica' }]
+          },
+          {
+            title: 'Tingimento em camadas',
+            description: 'O tecido mergulha diversas vezes, absorvendo tons suaves que lembram o orvalho.'
+          },
+          {
+            title: 'Secagem ao vento',
+            description: 'O vestido seca suspenso, permitindo que o ar molde o caimento final.'
+          }
+        ],
+        gallery: [
+          { type: 'image', src: piece1, alt: 'Vestido Natural', caption: 'Vista frontal' },
+          { type: 'image', src: processDye, alt: 'Pigmento bot?nico', caption: 'Pigmentos em infus?o' }
+        ],
+        tags: ['vestido', 'bot?nico', 'camadas', 'leveza'],
+        image: piece1
+      },
+      {
+        id: 'blusa-terra',
+        slug: 'blusa-terra',
+        name: 'Blusa Terra',
+        description: 'Blusa estruturada tingida com argila avermelhada',
+        collection: 'Mem?ria da Terra',
+        conceptText: 'Feita para lembrar o calor do solo seco ao entardecer, a Blusa Terra envolve o corpo com texturas org?nicas e contrastes sutis.',
+        colorOrigin: {
+          name: 'Argila e urucum',
+          description: 'Argilas avermelhadas se misturam ao urucum para gerar um tom terroso profundo e cintilante.'
+        },
+        materialsCare: 'Linho org?nico tratado com argila natural. Lavar ? m?o com ?gua fria e secar ? sombra para preservar os minerais.',
+        processSteps: [
+          {
+            title: 'Sele??o da argila',
+            description: 'Argila coletada em pequenos lotes, peneirada e hidratada.'
+          },
+          {
+            title: 'Mistura com urucum',
+            description: 'O pigmento recebe urucum macerado, criando reflexos quentes.'
+          },
+          {
+            title: 'Aplica??o manual',
+            description: 'A argila ? aplicada como pintura, camada ap?s camada, respeitando a trama.',
+            media: [{ type: 'image', src: processCrochet, alt: 'Textura artesanal' }]
+          },
+          {
+            title: 'Cura ao sol suave',
+            description: 'A pe?a descansa em local arejado, permitindo fixa??o natural.'
+          }
+        ],
+        gallery: [
+          { type: 'image', src: piece2, alt: 'Blusa Terra', caption: 'Vista frontal' },
+          { type: 'image', src: processCrochet, alt: 'Textura em destaque', caption: 'Camadas de argila' }
+        ],
+        tags: ['blusa', 'argila', 'linho', 'textura'],
+        image: piece2
+      },
+      {
+        id: 'saia-memoria',
+        slug: 'saia-memoria',
+        name: 'Saia Mem?ria',
+        description: 'Saia plissada tingida em camadas de barro vermelho',
+        collection: 'Mem?ria da Terra',
+        conceptText: 'Camadas que guardam hist?rias. A Saia Mem?ria registra cada mergulho no barro como um arquivo vivo de tempo.',
+        colorOrigin: {
+          name: 'Barro vermelho',
+          description: 'O barro ? dilu?do, filtrado e aplicado em banhos sucessivos que criam grada??es intensas.'
+        },
+        materialsCare: 'Algod?o org?nico com acabamento leve. Recomenda-se lavar ? m?o e secar estendida para manter as pregas.',
+        processSteps: [
+          {
+            title: 'Preparando o barro',
+            description: 'Barro vermelho ? dissolvido e filtrado para remover impurezas.'
+          },
+          {
+            title: 'Banhos graduais',
+            description: 'O tecido mergulha em diferentes concentra??es para criar profundidade de cor.'
+          },
+          {
+            title: 'Plissagem manual',
+            description: 'Cada prega ? moldada ? m?o e fixada com vapor.'
+          },
+          {
+            title: 'Descanso final',
+            description: 'A saia repousa ao vento, consolidando cor e movimento.',
+            media: [{ type: 'image', src: collectionHero, alt: 'Descanso das pe?as' }]
+          }
+        ],
+        gallery: [
+          { type: 'image', src: piece3, alt: 'Saia Mem?ria', caption: 'Vista frontal' },
+          { type: 'image', src: collectionHero, alt: 'Detalhe das pregas', caption: 'Pregas em destaque' }
+        ],
+        tags: ['saia', 'barro', 'pregas', 'mem?ria'],
+        image: piece3
       }
+
     ]
   }
 ];

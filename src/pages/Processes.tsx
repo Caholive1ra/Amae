@@ -8,10 +8,10 @@ const Processes = () => {
         <ScrollReveal>
           <div className="text-center mb-16 md:mb-24">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-foreground mb-6 md:mb-8 leading-tight">
-              Diário da Terra
+              Laboratório de sustentabilidade
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light px-4">
-              Nos bastidores da criação: o tempo, as mãos e os materiais que dão vida a cada peça
+              Aqui começa o encontro entre você e a natureza.
             </p>
           </div>
         </ScrollReveal>
@@ -39,7 +39,7 @@ const Processes = () => {
                     <div className="space-y-4 md:space-y-6 px-2">
                       <div className="text-xs sm:text-sm text-accent uppercase tracking-[0.25em] md:tracking-[0.3em] font-lato font-light">
                         {process.category === 'dye' && 'Tingimento'}
-                        {process.category === 'crochet' && 'Crochê'}
+                        {process.category === 'crochet' && 'Croche'}
                         {process.category === 'modeling' && 'Modelagem'}
                         {process.category === 'time' && 'Tempo'}
                       </div>
@@ -58,7 +58,7 @@ const Processes = () => {
                     <div className="space-y-4 md:space-y-6 px-2 order-2 md:order-2">
                       <div className="text-xs sm:text-sm text-accent uppercase tracking-[0.25em] md:tracking-[0.3em] font-lato font-light">
                         {process.category === 'dye' && 'Tingimento'}
-                        {process.category === 'crochet' && 'Crochê'}
+                        {process.category === 'crochet' && 'Croche'}
                         {process.category === 'modeling' && 'Modelagem'}
                         {process.category === 'time' && 'Tempo'}
                       </div>
@@ -85,6 +85,7 @@ const Processes = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };

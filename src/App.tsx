@@ -10,7 +10,8 @@ import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ReadingProgress from "./components/ReadingProgress";
 import PageTransition from "./components/PageTransition";
-import ThemeToggle from "./components/ThemeToggle";
+import { ProductProvider } from "./contexts/ProductContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Pieces from "./pages/Pieces";
@@ -33,43 +34,48 @@ function ScrollToTop() {
 }
 
 const App = () => {
+  const basePath = import.meta.env.VITE_BASE_PATH || "/";
+
   useEffect(() => {
     document.documentElement.classList.add('smooth-scroll');
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter basename="/Amae">
-            <div className="min-h-screen flex flex-col">
-              <Preloader />
-              <ReadingProgress />
-              <Header />
-              <ScrollToTop />
-              <main className="flex-1">
-                <PageTransition>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/colecoes" element={<Collections />} />
-                    <Route path="/pecas" element={<Pieces />} />
-                    <Route path="/peca/:id" element={<PieceDetail />} />
-                    <Route path="/processos" element={<Processes />} />
-                    <Route path="/sobre" element={<About />} />
-                    <Route path="/contato" element={<Contact />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </PageTransition>
-              </main>
-              <Footer />
-              <ThemeToggle />
-            </div>
-          </BrowserRouter>
-        </TooltipProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <TooltipProvider>
+            <ProductProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter basename={basePath}>
+                <div className="min-h-screen flex flex-col">
+                  <Preloader />
+                  <ReadingProgress />
+                  <Header />
+                  <ScrollToTop />
+                  <main className="flex-1">
+                    <PageTransition>
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/colecoes" element={<Collections />} />
+                        <Route path="/pecas" element={<Pieces />} />
+                        <Route path="/peca/:id" element={<PieceDetail />} />
+                        <Route path="/processos" element={<Processes />} />
+                        <Route path="/sobre" element={<About />} />
+                        <Route path="/contato" element={<Contact />} />
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </PageTransition>
+                  </main>
+                  <Footer />
+                </div>
+              </BrowserRouter>
+            </ProductProvider>
+          </TooltipProvider>
+        </HelmetProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 };
 

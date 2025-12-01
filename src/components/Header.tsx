@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import NavLink from './NavLink';
+import { Button } from './ui/button';
+import logoOficial from '@/assets/logo_oficial.png';
 
 const Header = () => {
   const location = useLocation();
@@ -11,6 +13,23 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    setTheme(initialTheme);
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,44 +70,76 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link 
-            to="/" 
-            className={cn(
-              "text-2xl font-playfair tracking-widest transition-colors duration-300",
-              isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
-            )}
+          <Link
+            to="/"            
           >
-            AMAÉ
+            <img src={logoOficial} alt="Amaé" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <li key={link.to}>
-                <NavLink 
-                  to={link.to}
-                  className={cn(
-                    "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300",
-                    isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
-                  )}
-                >
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center gap-6">
+            <ul className="flex items-center gap-10">
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <NavLink 
+                    to={link.to}
+                    className={cn(
+                      "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300",
+                      isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
+                    )}
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleTheme}
+              className={cn(
+                "transition-colors duration-300",
+                isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
+              )}
+              aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
+            >
+              {theme === 'light' ? (
+                <Moon className="w-5 h-5" />
+              ) : (
+                <Sun className="w-5 h-5" />
+              )}
+            </Button>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={cn(
-              "md:hidden transition-colors duration-300",
-              isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
-            )}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="md:hidden flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleTheme}
+              className={cn(
+                "transition-colors duration-300",
+                isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
+              )}
+              aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
+            >
+              {theme === 'light' ? (
+                <Moon className="w-5 h-5" />
+              ) : (
+                <Sun className="w-5 h-5" />
+              )}
+            </Button>
+            <button
+              className={cn(
+                "transition-colors duration-300",
+                isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
+              )}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -126,3 +177,4 @@ const Header = () => {
 };
 
 export default Header;
+

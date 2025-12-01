@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ScrollReveal';
 import PoeticPause from '@/components/PoeticPause';
 import SEO from '@/components/SEO';
-import heroHome from '@/assets/hero-home.jpg';
+import heroBackground from '@/assets/foto-inicio.jpg';
 import collectionHero from '@/assets/collection-hero.jpg';
 import processDye from '@/assets/process-dye.jpg';
 import processCrochet from '@/assets/process-crochet.jpg';
@@ -13,6 +13,7 @@ import piece1 from '@/assets/piece-1.jpg';
 import piece2 from '@/assets/piece-2.jpg';
 import piece3 from '@/assets/piece-3.jpg';
 import { useRef } from 'react';
+import { useProduct } from '@/contexts/ProductContext';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -24,17 +25,35 @@ const Home = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
+  const navigate = useNavigate();
+  const { setSelectedProduct } = useProduct();
+
   const featuredPieces = [
-    { id: 'vestido-sol-poente', name: 'Vestido Sol Poente', image: piece1, description: 'Tingimento natural de cúrcuma' },
-    { id: 'top-crochet-areia', name: 'Top Crochê Areia', image: piece2, description: 'Pigmento de café e hibisco' },
-    { id: 'calca-cafe', name: 'Calça Café', image: piece3, description: 'Memória da terra em linho' },
+    { id: 'vestido-sol-poente', name: 'Vestido Sol Poente', image: piece1 },
+    { id: 'top-crochet-areia', name: 'Top Crochê Areia', image: piece2 },
+    { id: 'calca-cafe', name: 'Calça Café', image: piece3 },
+    { id: 'vestido-natural', name: 'Vestido Natural', image: piece1 },
+    { id: 'blusa-terra', name: 'Blusa Terra', image: piece2 },
+    { id: 'saia-memoria', name: 'Saia Memória', image: piece3 },
   ];
 
+  const handleEncomendar = (pieceName: string) => {
+    setSelectedProduct(pieceName);
+    navigate('/contato');
+    // Scroll suave será feito no Contact após o componente montar
+    setTimeout(() => {
+      const formSection = document.getElementById('contact-form');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   const processes = [
-    { title: 'Tingimento Natural', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
-    { title: 'Crochê Artesanal', description: 'Cada ponto carrega tempo e cuidado', image: processCrochet },
-    { title: 'Modelagem Única', description: 'Formas orgânicas que respeitam o corpo', image: collectionHero },
-    { title: 'Tempo', description: 'O processo que honra a impermanência', image: aboutAtelier },
+    { title: 'descubra os pigmentos usados na última coleção', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
+    { title: 'descubra os materiais tipos de ponto e muito mais', description: 'Cada ponto carrega tempo e cuidado', image: processCrochet },
+    { title: 'tecidos naturais- aprenda a identificar e as caracteristicas de tecidos naturais', description: 'Formas orgânicas que respeitam o corpo', image: collectionHero },
+    { title: 'cuidados- cuidados com sua peça 100% natural', description: 'O processo que honra a impermanência', image: aboutAtelier },
   ];
 
   return (
@@ -53,8 +72,8 @@ const Home = () => {
           >
             <motion.img
               style={{ scale: heroScale }}
-              src={heroHome}
-              alt="Amaé - Moda Viva"
+              src={heroBackground}
+              alt="Ama? - Moda Viva"
               className="w-full h-full object-cover"
               loading="eager"
             />
@@ -62,16 +81,16 @@ const Home = () => {
           </motion.div>
           
           <motion.div 
-            className="relative z-10 text-center px-4"
+            className="relative z-10 text-center px-4 mt-20 md:mt-32"
             style={{ opacity: heroOpacity }}
           >
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-playfair text-background mb-6 leading-tight tracking-wide"
+              className="text-4xl md:text-6x1 lg:text-7xl font-playfair text-background mb-6 leading-tight tracking-wide"
             >
-              AMAÉ É a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
+              AMAÉ é a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -85,7 +104,25 @@ const Home = () => {
         </section>
 
         {/* Poetic Pause */}
-        <PoeticPause text="Descubra mais sobre a Amaé" />
+        <div className="poetic-pause flex flex-col items-center justify-center space-y-8">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-2xl md:text-3xl font-playfair text-foreground text-center max-w-3xl"
+          >
+            descubra mais sobre a amaé
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Button asChild size="lg" className="shadow-soft hover-lift">
+              <Link to="/sobre">descubra mais sobre a amaé</Link>
+            </Button>
+          </motion.div>
+        </div>
 
         {/* Essence Section */}
         <section className="py-32 px-4">
@@ -117,7 +154,7 @@ const Home = () => {
                       tingida com pigmentos naturais que carregam a memória da terra.
                     </p>
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
-                      Cada peça registra o passar do tempo criando histórias junto com quem a veste, 
+                      registra o passar do tempo criando historias junto com quem a veste. celebrando a vida e a impermanencia da natureza
                       celebrando a vida e a impermanência da natureza.
                     </p>
                   </div>
@@ -141,16 +178,16 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6 leading-tight">
                   Coleção Memória da Terra
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
-                  Peças únicas que carregam o tempo e a essência da natureza
+                <p className="text-xl text-white max-w-3xl mx-auto font-light">
+                  coleção de primavera 25 a impermanencia como ponto de transformação
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
               {featuredPieces.map((piece, index) => (
                 <ScrollReveal key={piece.id} delay={index * 100}>
-                  <Link to={`/peca/${piece.id}`} className="group block">
+                  <div className="group">
                     <motion.div 
                       whileHover={{ y: -8 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -166,11 +203,16 @@ const Home = () => {
                       />
                       <div className="absolute inset-0 gradient-overlay-light opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </motion.div>
-                    <h3 className="text-2xl font-playfair text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
+                    <h3 className="text-2xl font-playfair text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
                       {piece.name}
                     </h3>
-                    <p className="text-muted-foreground font-light">{piece.description}</p>
-                  </Link>
+                    <Button 
+                      onClick={() => handleEncomendar(piece.name)}
+                      className="w-full shadow-soft hover-lift"
+                    >
+                      Encomendar
+                    </Button>
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
@@ -193,7 +235,7 @@ const Home = () => {
                 <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6">
                   O Processo
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
+                <p className="text-xl text-white max-w-3xl mx-auto font-light">
                   Cada etapa honra o tempo e a natureza
                 </p>
               </div>
@@ -234,15 +276,57 @@ const Home = () => {
             <ScrollReveal delay={400}>
               <div className="text-center mt-16">
                 <Button asChild variant="outline" size="lg" className="hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                  <Link to="/processos">Explorar Processos</Link>
+                  <Link to="/processos">baixe nosso caderno de experimentações de pigmentos</Link>
                 </Button>
               </div>
             </ScrollReveal>
           </div>
         </section>
+
+        <section className="py-24 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <ScrollReveal>
+                <div className="space-y-6 px-2 md:px-0 md:max-w-xl">
+                  <p className="text-xs sm:text-sm text-accent uppercase tracking-[0.3em] font-lato font-light">
+                    di?rio vivo
+                  </p>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair text-foreground leading-tight">
+                    Assista ao processo em movimento
+                  </h2>
+                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+                    Um registro vertical direto do ateli? Ama?. Aperte o play para acompanhar as m?os, os pigmentos e o
+                    tempo que d?o vida a cada pe?a.
+                  </p>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={150}>
+                <div className="w-full md:max-w-sm lg:max-w-md md:justify-self-end">
+                  <div className="relative rounded-3xl overflow-hidden shadow-soft-lg" style={{ paddingBottom: '177.78%', height: 0 }}>
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/kCXds_FbF9w"
+                      title="Processo Ama?"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
       </div>
     </>
   );
 };
 
 export default Home;
+
+
+
+
+
+
