@@ -6,10 +6,17 @@ import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import InterestModal from '@/components/InterestModal';
 import type { Piece } from '@/types';
-import { allProducts } from '@/data/products';
+import { allProducts as originalProducts } from '@/data/products';
+
+import product1 from '@/assets/blusa manga única hibisco + calça reta babados de crochê café.jpg';
+import product2 from '@/assets/Calça de babados com feijão em seda + blusa gola alta Fuxico.jpg';
+import product3 from '@/assets/Vestido com croche.jpg';
+import product4 from '@/assets/blusa ombro em camadas feijão + calça com elastico fluida + lenço de ecoprint.jpg';
+import product5 from '@/assets/Top regulável hibisco feito com zanzibar + calça regulável em viscolinho.jpg';
+import product6 from '@/assets/blusa regata nervuras café + saia com camadas feijão.jpg';
 
 const Pieces = () => {
-  const pieces = allProducts;
+  const pieces = originalProducts;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPiece, setSelectedPiece] = useState('');
 
@@ -17,6 +24,16 @@ const Pieces = () => {
     setSelectedPiece(pieceName);
     setIsModalOpen(true);
   };
+
+  const updatedPieces = pieces.map((piece, index) => {
+    const newImages = [product1, product2, product3, product4, product5, product6];
+    if (index < newImages.length) {
+      return { ...piece, image: newImages[index] };
+    }
+    return piece;
+  });
+
+  const allProducts = updatedPieces;
 
   return (
     <>
@@ -42,7 +59,7 @@ const Pieces = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {pieces.map((piece, index) => (
+            {allProducts.map((piece, index) => (
               <PieceCard key={piece.id} piece={piece} index={index} onOrderClick={handleOrderClick} />
             ))}
           </div>
