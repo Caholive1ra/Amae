@@ -88,7 +88,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-playfair text-background mb-6 leading-tight tracking-wide"
+              className="text-4xl md:text-6xl lg:text-7xl font-playfair text-background mb-6 leading-tight tracking-wide"
             >
               AMAÉ É a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
             </motion.h1>

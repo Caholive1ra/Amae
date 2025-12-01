@@ -34,6 +34,8 @@ function ScrollToTop() {
 }
 
 const App = () => {
+  const basePath = import.meta.env.VITE_BASE_PATH || "/";
+
   useEffect(() => {
     document.documentElement.classList.add('smooth-scroll');
   }, []);
@@ -46,7 +48,7 @@ const App = () => {
             <ProductProvider>
               <Toaster />
               <Sonner />
-              <BrowserRouter basename="/">
+              <BrowserRouter basename={basePath}>
                 <div className="min-h-screen flex flex-col">
                   <Preloader />
                   <ReadingProgress />

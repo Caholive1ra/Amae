@@ -25,7 +25,7 @@ const Footer = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg md:text-xl font-playfair text-muted-foreground max-w-2xl italic"
+            className="text-lg md:text-xl font-playfair text-white max-w-2xl italic"
           >
             "A impermanência é o que nos torna eternos."
           </motion.p>
@@ -41,14 +41,14 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-white/80 transition-all duration-300 hover:scale-110"
               aria-label="Instagram"
             >
               <Instagram size={22} />
             </a>
             <a
               href="mailto:contato@amae.com"
-              className="text-muted-foreground hover:text-accent transition-all duration-300 hover:scale-110"
+              className="text-white hover:text-white/80 transition-all duration-300 hover:scale-110"
               aria-label="Email"
             >
               <Mail size={22} />
@@ -60,7 +60,7 @@ const Footer = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-sm text-muted-foreground/80 font-light"
+            className="text-sm text-white font-light"
           >
             <p>Loja na Rua Mateus Grou, 306, Loja 1</p>
             <p>Pinheiros - São Paulo, SP</p>
@@ -71,7 +71,7 @@ const Footer = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xs text-muted-foreground/70 pt-6 tracking-wide"
+            className="text-xs text-white pt-6 tracking-wide"
           >
             © {new Date().getFullYear()} Amaé. Todos os direitos reservados.
           </motion.p>
