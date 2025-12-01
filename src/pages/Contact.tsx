@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,14 +7,35 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Instagram } from 'lucide-react';
 import aboutAtelier from '@/assets/about-atelier.jpg';
+import { useProduct } from '@/contexts/ProductContext';
 
 const Contact = () => {
   const { toast } = useToast();
+  const { selectedProduct, setSelectedProduct } = useProduct();
+  const formRef = useRef<HTMLFormElement>(null);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setFormData(prev => ({
+        ...prev,
+        message: `Gostaria de encomendar: ${selectedProduct}`
+      }));
+      
+      // Scroll suave para o formulário
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      
+      // Limpar produto selecionado após usar
+      setSelectedProduct(null);
+    }
+  }, [selectedProduct, setSelectedProduct]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,7 +110,12 @@ const Contact = () => {
 
           {/* Form */}
           <ScrollReveal delay={150}>
-            <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8 bg-card/50 p-6 md:p-10 rounded-lg shadow-soft">
+            <form 
+              ref={formRef}
+              id="contact-form"
+              onSubmit={handleSubmit} 
+              className="space-y-6 md:space-y-8 bg-card/50 p-6 md:p-10 rounded-lg shadow-soft"
+            >
               <div className="space-y-3">
                 <Label htmlFor="name" className="text-base font-lato">Nome</Label>
                 <Input

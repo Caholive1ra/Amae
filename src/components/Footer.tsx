@@ -55,6 +55,17 @@ const Footer = () => {
             </a>
           </motion.div>
 
+          {/* Address */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-sm text-muted-foreground/80 font-light"
+          >
+            <p>Loja na Rua Mateus Grou, 306, Loja 1</p>
+            <p>Pinheiros - São Paulo, SP</p>
+          </motion.div>
+
           {/* Copyright */}
           <motion.p
             initial={{ opacity: 0 }}

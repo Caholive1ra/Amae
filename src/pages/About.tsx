@@ -7,7 +7,7 @@ const About = () => {
   const manifestoSections = [
     {
       title: 'A Origem da Amaé',
-      content: 'Amaé nasce da Chapada Diamantina, onde o tempo esculpe rochas e a água desenha vales. É o encontro entre corpo e solo, entre o fazer e o florescer. Cada peça carrega a memória da terra, traduzida em cores que nascem de flores, raízes e sementes.',
+      content: 'Amaé nasce do encontro entre corpo e solo, entre o fazer e o florescer. Cada peça carrega a memória da terra, traduzida em cores que nascem de flores, raízes e sementes.',
       image: heroHome,
     },
     {

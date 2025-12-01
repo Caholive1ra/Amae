@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -13,6 +13,7 @@ import piece1 from '@/assets/piece-1.jpg';
 import piece2 from '@/assets/piece-2.jpg';
 import piece3 from '@/assets/piece-3.jpg';
 import { useRef } from 'react';
+import { useProduct } from '@/contexts/ProductContext';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -24,11 +25,29 @@ const Home = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
+  const navigate = useNavigate();
+  const { setSelectedProduct } = useProduct();
+
   const featuredPieces = [
-    { id: 'vestido-sol-poente', name: 'Vestido Sol Poente', image: piece1, description: 'Tingimento natural de cúrcuma' },
-    { id: 'top-crochet-areia', name: 'Top Crochê Areia', image: piece2, description: 'Pigmento de café e hibisco' },
-    { id: 'calca-cafe', name: 'Calça Café', image: piece3, description: 'Memória da terra em linho' },
+    { id: 'vestido-sol-poente', name: 'Vestido Sol Poente', image: piece1 },
+    { id: 'top-crochet-areia', name: 'Top Crochê Areia', image: piece2 },
+    { id: 'calca-cafe', name: 'Calça Café', image: piece3 },
+    { id: 'vestido-natural', name: 'Vestido Natural', image: piece1 },
+    { id: 'blusa-terra', name: 'Blusa Terra', image: piece2 },
+    { id: 'saia-memoria', name: 'Saia Memória', image: piece3 },
   ];
+
+  const handleEncomendar = (pieceName: string) => {
+    setSelectedProduct(pieceName);
+    navigate('/contato');
+    // Scroll suave será feito no Contact após o componente montar
+    setTimeout(() => {
+      const formSection = document.getElementById('contact-form');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
 
   const processes = [
     { title: 'Tingimento Natural', description: 'Pigmentos da terra e plantas da Chapada', image: processDye },
@@ -85,7 +104,25 @@ const Home = () => {
         </section>
 
         {/* Poetic Pause */}
-        <PoeticPause text="Descubra mais sobre a Amaé" />
+        <div className="poetic-pause flex flex-col items-center justify-center space-y-8">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-2xl md:text-3xl font-playfair text-foreground text-center max-w-3xl"
+          >
+            Descubra mais sobre a Amaé
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Button asChild size="lg" className="shadow-soft hover-lift">
+              <Link to="/sobre">Descubra mais sobre a Amaé</Link>
+            </Button>
+          </motion.div>
+        </div>
 
         {/* Essence Section */}
         <section className="py-32 px-4">
@@ -117,7 +154,7 @@ const Home = () => {
                       tingida com pigmentos naturais que carregam a memória da terra.
                     </p>
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
-                      Cada peça registra o passar do tempo criando histórias junto com quem a veste, 
+                      A roupa registra o passar do tempo criando histórias junto com quem a veste, 
                       celebrando a vida e a impermanência da natureza.
                     </p>
                   </div>
@@ -147,10 +184,10 @@ const Home = () => {
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
               {featuredPieces.map((piece, index) => (
                 <ScrollReveal key={piece.id} delay={index * 100}>
-                  <Link to={`/peca/${piece.id}`} className="group block">
+                  <div className="group">
                     <motion.div 
                       whileHover={{ y: -8 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -166,11 +203,16 @@ const Home = () => {
                       />
                       <div className="absolute inset-0 gradient-overlay-light opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </motion.div>
-                    <h3 className="text-2xl font-playfair text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
+                    <h3 className="text-2xl font-playfair text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
                       {piece.name}
                     </h3>
-                    <p className="text-muted-foreground font-light">{piece.description}</p>
-                  </Link>
+                    <Button 
+                      onClick={() => handleEncomendar(piece.name)}
+                      className="w-full shadow-soft hover-lift"
+                    >
+                      Encomendar
+                    </Button>
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
