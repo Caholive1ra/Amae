@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ReadingProgress from "./components/ReadingProgress";
 import PageTransition from "./components/PageTransition";
-import SoundToggle from "./components/SoundToggle";
+import ThemeToggle from "./components/ThemeToggle";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Pieces from "./pages/Pieces";
@@ -64,7 +64,7 @@ const App = () => {
                 </PageTransition>
               </main>
               <Footer />
-              <SoundToggle />
+              <ThemeToggle />
             </div>
           </BrowserRouter>
         </TooltipProvider>

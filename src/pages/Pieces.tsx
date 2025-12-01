@@ -1,13 +1,22 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { collections } from '@/data/collections';
 import SEO from '@/components/SEO';
+import { Button } from '@/components/ui/button';
+import InterestModal from '@/components/InterestModal';
 import type { Piece } from '@/types';
 
 const Pieces = () => {
   const pieces = collections.flatMap(c => c.pieces);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPiece, setSelectedPiece] = useState('');
+
+  const handleOrderClick = (pieceName: string) => {
+    setSelectedPiece(pieceName);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -32,13 +41,19 @@ const Pieces = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {pieces.map((piece, index) => (
-              <PieceCard key={piece.id} piece={piece} index={index} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            {pieces.slice(0, 6).map((piece, index) => (
+              <PieceCard key={piece.id} piece={piece} index={index} onOrderClick={handleOrderClick} />
             ))}
           </div>
         </div>
       </div>
+
+      <InterestModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        pieceName={selectedPiece}
+      />
     </>
   );
 };
@@ -46,9 +61,10 @@ const Pieces = () => {
 interface PieceCardProps {
   piece: Piece;
   index: number;
+  onOrderClick: (pieceName: string) => void;
 }
 
-const PieceCard = ({ piece, index }: PieceCardProps) => {
+const PieceCard = ({ piece, index, onOrderClick }: PieceCardProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -62,12 +78,13 @@ const PieceCard = ({ piece, index }: PieceCardProps) => {
         delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1]
       }}
+      className="flex flex-col"
     >
       <Link
         to={`/peca/${piece.id}`}
-        className="group block hover-lift"
+        className="group block hover-lift mb-4"
       >
-        <div className="relative h-[600px] rounded-lg overflow-hidden mb-6 shadow-soft image-zoom">
+        <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-lg overflow-hidden shadow-soft image-zoom">
           <img
             src={piece.image}
             alt={piece.name}
@@ -76,15 +93,17 @@ const PieceCard = ({ piece, index }: PieceCardProps) => {
           />
           <div className="absolute inset-0 gradient-overlay-light opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
-        <div className="space-y-3">
-          <h3 className="text-3xl font-playfair text-foreground group-hover:text-accent transition-colors duration-300">
-            {piece.name}
-          </h3>
-          <p className="text-muted-foreground font-light">
-            {piece.description}
-          </p>
-        </div>
       </Link>
+      <h3 className="text-2xl md:text-3xl font-playfair text-foreground mb-4">
+        {piece.name}
+      </h3>
+      <Button 
+        onClick={() => onOrderClick(piece.name)}
+        className="w-full shadow-soft hover-lift"
+        size="lg"
+      >
+        Encomendar
+      </Button>
     </motion.div>
   );
 };

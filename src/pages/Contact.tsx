@@ -62,6 +62,10 @@ const Contact = () => {
                 </p>
 
                 <div className="space-y-4 md:space-y-5 pt-2 md:pt-4">
+                  <div className="text-muted-foreground min-h-[44px]">
+                    <p className="font-light text-sm sm:text-base mb-1">Loja na Rua Mateus Grou, 306, Loja 1</p>
+                    <p className="font-light text-sm sm:text-base">Pinheiros - São Paulo, SP</p>
+                  </div>
                   <a
                     href="mailto:contato@amae.com"
                     className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 min-h-[44px]"

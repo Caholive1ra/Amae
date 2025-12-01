@@ -71,7 +71,7 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl md:text-7xl lg:text-8xl font-playfair text-background mb-6 leading-tight tracking-wide"
             >
-              Moda viva que carrega<br />a memória da terra
+              AMAÉ É a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -79,13 +79,13 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-xl md:text-2xl text-background/90 font-light max-w-3xl mx-auto"
             >
-              Inspirada na impermanência da natureza e nas camadas da Chapada Diamantina
+              Tudo feito com calma e respeito com a natureza
             </motion.p>
           </motion.div>
         </section>
 
         {/* Poetic Pause */}
-        <PoeticPause text="Nada é estático. Tudo é memória." />
+        <PoeticPause text="Descubra mais sobre a Amaé" />
 
         {/* Essence Section */}
         <section className="py-32 px-4">
@@ -114,11 +114,11 @@ const Home = () => {
                   <div className="space-y-6">
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
                       Nascemos do conceito da impermanência da natureza. Cada peça é um registro vivo do tempo, 
-                      tingida com pigmentos naturais que carregam a memória da terra da Chapada Diamantina.
+                      tingida com pigmentos naturais que carregam a memória da terra.
                     </p>
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
-                      A roupa desbota, marca o uso, envelhece junto com quem a veste — 
-                      celebrando a beleza das camadas, da erosão, dos sedimentos que contam histórias.
+                      Cada peça registra o passar do tempo criando histórias junto com quem a veste, 
+                      celebrando a vida e a impermanência da natureza.
                     </p>
                   </div>
                   <Button asChild size="lg" className="shadow-soft hover-lift">
