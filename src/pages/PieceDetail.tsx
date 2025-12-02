@@ -25,10 +25,10 @@ const PieceDetail = () => {
           title="Peça não encontrada"
           description="Esta peça não está disponível"
         />
-        <div className="min-h-screen pt-32 pb-20 px-4">
+        <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6">
           <div className="container mx-auto text-center">
-            <h1 className="text-5xl font-playfair text-foreground mb-8">Peça não encontrada</h1>
-            <Button asChild className="shadow-soft">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-playfair text-foreground mb-6 sm:mb-8 px-2">Peça não encontrada</h1>
+            <Button asChild className="shadow-soft w-full sm:w-auto">
               <Link to="/colecao">Voltar para Coleção</Link>
             </Button>
           </div>
@@ -61,9 +61,9 @@ const PieceDetail = () => {
         </script>
       </SEO>
 
-      <div className="min-h-screen pt-32 pb-20">
+      <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
       {/* Back Button */}
-      <div className="container mx-auto px-4 mb-8">
+      <div className="container mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
         <Button asChild variant="ghost" size="sm" className="hover:text-accent">
           <Link to="/colecao">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -73,7 +73,7 @@ const PieceDetail = () => {
       </div>
 
       {/* Hero Image */}
-      <div className="relative h-[75vh] mb-24">
+      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[75vh] mb-12 sm:mb-16 md:mb-24">
         <div className="image-zoom h-full">
           <img
             src={piece.image}
@@ -82,13 +82,13 @@ const PieceDetail = () => {
           />
         </div>
         <div className="absolute inset-0 gradient-overlay-dark" />
-        <div className="absolute bottom-16 left-0 right-0">
-          <div className="container mx-auto px-4">
+        <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-0 right-0">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-6xl md:text-7xl font-playfair text-background mb-4 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair text-background mb-2 sm:mb-4 leading-tight"
             >
               {piece.name}
             </motion.h1>
@@ -96,17 +96,17 @@ const PieceDetail = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
         {/* Concept */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24"
+          className="mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-4xl font-playfair text-foreground mb-8">Conceito</h2>
-          <p className="text-xl text-muted-foreground leading-relaxed font-light">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-foreground mb-4 sm:mb-6 md:mb-8">Conceito</h2>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
             {piece.conceptText}
           </p>
         </motion.section>
@@ -117,24 +117,24 @@ const PieceDetail = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24"
+          className="mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-4xl font-playfair text-foreground mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-foreground mb-4 sm:mb-6 md:mb-8">
             Origem da Cor: {piece.colorOrigin.name}
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
             {piece.colorOrigin.description}
           </p>
         </motion.section>
 
         {/* Process */}
-        <section className="mb-24">
+        <section className="mb-12 sm:mb-16 md:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="text-4xl font-playfair text-foreground mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-playfair text-foreground mb-8 sm:mb-10 md:mb-12"
           >
             Processo
           </motion.h2>
@@ -148,10 +148,10 @@ const PieceDetail = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="mb-24"
+            className="mb-12 sm:mb-16 md:mb-24"
           >
-            <h2 className="text-4xl font-playfair text-foreground mb-12">Galeria</h2>
-            <div className="relative h-[600px] rounded-lg overflow-hidden shadow-soft-lg">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-playfair text-foreground mb-6 sm:mb-8 md:mb-12">Galeria</h2>
+            <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-lg overflow-hidden shadow-soft-lg">
               <MediaCarousel items={piece.gallery} />
             </div>
           </motion.section>
@@ -163,10 +163,10 @@ const PieceDetail = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24"
+          className="mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-3xl font-playfair text-foreground mb-8">Materiais e Cuidados</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed font-light">
+          <h2 className="text-2xl sm:text-3xl font-playfair text-foreground mb-4 sm:mb-6 md:mb-8">Materiais e Cuidados</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed font-light">
             {piece.materialsCare}
           </p>
         </motion.div>
@@ -177,15 +177,15 @@ const PieceDetail = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center py-16 border-t border-border/50"
+          className="text-center py-12 sm:py-14 md:py-16 border-t border-border/50 px-4"
         >
-          <h3 className="text-3xl font-playfair text-foreground mb-6">
+          <h3 className="text-2xl sm:text-3xl font-playfair text-foreground mb-4 sm:mb-6">
             Interessado nesta peça?
           </h3>
-          <p className="text-muted-foreground mb-8 font-light text-lg">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8 font-light">
             Entre em contato para saber mais sobre disponibilidade
           </p>
-          <Button size="lg" onClick={() => setIsModalOpen(true)} className="shadow-soft-lg hover-lift">
+          <Button size="lg" onClick={() => setIsModalOpen(true)} className="shadow-soft-lg hover-lift w-full sm:w-auto">
             Registrar Interesse
           </Button>
         </motion.div>

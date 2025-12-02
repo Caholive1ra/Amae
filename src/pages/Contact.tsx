@@ -49,24 +49,24 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-20">
-      <div className="container mx-auto px-6 md:px-4 max-w-6xl">
+    <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
+      <div className="container mx-auto px-0 sm:px-4 md:px-6 max-w-6xl">
         <ScrollReveal>
-          <div className="text-center mb-16 md:mb-24">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-foreground mb-6 md:mb-8 leading-tight">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair text-foreground mb-4 sm:mb-6 md:mb-8 leading-tight px-2">
               Contato
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto font-light px-4">
               Entre em contato conosco para conhecer mais sobre o ateliê ou fazer uma encomenda personalizada
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-start">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-start">
           {/* Image & Info */}
           <ScrollReveal delay={50}>
-            <div className="space-y-8 md:space-y-10">
-              <div className="relative h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
+            <div className="space-y-6 sm:space-y-8 md:space-y-10 w-full px-2 sm:px-0">
+              <div className="relative h-[350px] sm:h-[400px] md:h-[500px] lg:h-[550px] xl:h-[600px] rounded-lg overflow-hidden shadow-soft-lg image-zoom">
                 <img
                   src={aboutAtelier}
                   alt="Ateliê Amaé"
@@ -74,25 +74,25 @@ const Contact = () => {
                 />
               </div>
 
-              <div className="space-y-6 md:space-y-8 px-2">
-                <h2 className="text-2xl sm:text-3xl font-playfair text-foreground">O Ateliê</h2>
-                <p className="text-muted-foreground leading-relaxed font-light text-base sm:text-lg">
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-playfair text-foreground">O Ateliê</h2>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm sm:text-base md:text-lg">
                   Cada peça Amaé é criada com cuidado e atenção personalizada. 
                   Trabalhamos com encomendas sob medida, respeitando o tempo necessário 
                   para que cada criação seja única e especial.
                 </p>
 
-                <div className="space-y-4 md:space-y-5 pt-2 md:pt-4">
+                <div className="space-y-3 sm:space-y-4 md:space-y-5 pt-2 md:pt-4">
                   <div className="text-muted-foreground min-h-[44px]">
-                    <p className="font-light text-sm sm:text-base mb-1">Loja na Rua Mateus Grou, 306, Loja 1</p>
-                    <p className="font-light text-sm sm:text-base">Pinheiros - São Paulo, SP</p>
+                    <p className="font-light text-xs sm:text-sm md:text-base mb-1">Loja na Rua Mateus Grou, 306, Loja 1</p>
+                    <p className="font-light text-xs sm:text-sm md:text-base">Pinheiros - São Paulo, SP</p>
                   </div>
                   <a
                     href="mailto:contato@amae.com"
                     className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 min-h-[44px]"
                   >
-                    <Mail size={20} className="md:w-[22px] md:h-[22px] flex-shrink-0" />
-                    <span className="font-light text-sm sm:text-base">contato@amae.com</span>
+                    <Mail size={18} className="sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0" />
+                    <span className="font-light text-xs sm:text-sm md:text-base">contato@amae.com</span>
                   </a>
                   <a
                     href="https://instagram.com"
@@ -100,8 +100,8 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 min-h-[44px]"
                   >
-                    <Instagram size={20} className="md:w-[22px] md:h-[22px] flex-shrink-0" />
-                    <span className="font-light text-sm sm:text-base">@amae.moda</span>
+                    <Instagram size={18} className="sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0" />
+                    <span className="font-light text-xs sm:text-sm md:text-base">@amae.moda</span>
                   </a>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const Contact = () => {
               ref={formRef}
               id="contact-form"
               onSubmit={handleSubmit} 
-              className="space-y-6 md:space-y-8 bg-card/50 p-6 md:p-10 rounded-lg shadow-soft"
+              className="space-y-4 sm:space-y-6 md:space-y-8 bg-card/50 px-[100px] py-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-soft w-full mx-auto"
             >
               <div className="space-y-3">
                 <Label htmlFor="name" className="text-base font-lato">Nome</Label>

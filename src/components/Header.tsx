@@ -45,14 +45,14 @@ const Header = () => {
         boxShadow: isScrolled ? '0 2px 20px hsl(var(--foreground) / 0.08)' : 'none',
       }}
     >
-      <nav className="container mx-auto px-4 py-5">
+      <nav className="container mx-auto px-4 sm:px-6 py-4 sm:py-5">
         <div className="flex items-center justify-between">
           <Link to="/" aria-label="Voltar para o inicio">
-            <img src={logoOficial} alt="Amae" className="h-10 w-auto" />
+            <img src={logoOficial} alt="Amae" className="h-8 sm:h-10 w-auto" />
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
-            <ul className="flex items-center gap-10">
+            <ul className="flex items-center gap-8 lg:gap-10">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <NavLink

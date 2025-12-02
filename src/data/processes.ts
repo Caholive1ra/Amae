@@ -1,7 +1,7 @@
 import { ProcessImage } from '@/types';
 import processDye from '@/assets/process-dye.jpg';
 import processCrochet from '@/assets/process-crochet.jpg';
-import collectionHero from '@/assets/collection-hero.jpg';
+import tecidoImage from '@/assets/tecido.webp';
 import aboutAtelier from '@/assets/atelie-novo.jpeg';
 
 export const processImages: ProcessImage[] = [
@@ -20,10 +20,10 @@ export const processImages: ProcessImage[] = [
     category: 'crochet',
   },
   {
-    id: 'modelagem-consciente',
-    title: 'Modelagem Consciente',
-    description: 'Pensar cada corte como um gesto de cuidado. A modelagem respeita o corpo e o tecido, criando peças que abraçam sem apertar.',
-    image: collectionHero,
+    id: 'tecidos',
+    title: 'Tecidos Naturais',
+    description: 'Pensar em cada tecido como um gesto de cuidado com o meio ambiente. Desde a escolha de fibras certificadas ao cuidado com o seu processo de tecelagem.',
+    image: tecidoImage,
     category: 'modeling',
   },
   {
