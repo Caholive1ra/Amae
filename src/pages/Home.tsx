@@ -6,9 +6,10 @@ import PoeticPause from '@/components/PoeticPause';
 import SEO from '@/components/SEO';
 import heroBackground from '@/assets/foto-inicio.jpg';
 import impermanencia from '@/assets/impermanencia.jpg';
-import process1 from '@/assets/process1.jpeg';
-import process2 from '@/assets/process2.jpeg';
 import process3 from '@/assets/process3.jpeg';
+import croche from '../../assets/croche.jpeg';
+import tecidosNaturais from '../../assets/tecidosNAturai.jpeg';
+import cuidados from '../../assets/cuidados.jpeg';
 import { useRef } from 'react';
 
 const Home = () => {
@@ -25,22 +26,22 @@ const Home = () => {
     {
       title: 'Tingimento Natural',
       description: 'Descubra os pigmentos usados na última coleção.',
-      image: process1,
+      image: process3,
     },
     {
       title: 'Croche Artesanal',
       description: 'Descubra os materiais, tipos de ponto e muito mais.',
-      image: process2,
+      image: croche,
     },
     {
       title: 'Tecidos naturais',
       description: 'Aprenda a identificar e as características de tecidos naturais.',
-      image: process3,
+      image: tecidosNaturais,
     },
     {
       title: 'Cuidados',
       description: 'Cuidados com sua peça 100% natural.',
-      image: impermanencia,
+      image: cuidados,
     },
   ];
 
@@ -208,13 +209,6 @@ const Home = () => {
               ))}
             </div>
 
-            <ScrollReveal delay={400}>
-              <div className="text-center mt-12 sm:mt-16 px-4">
-                <Button asChild variant="outline" size="lg" className="hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground w-full sm:w-auto">
-                  <Link to="/processos">Baixe nosso caderno de estudo de pigmentos</Link>
-                </Button>
-              </div>
-            </ScrollReveal>
           </div>
         </section>
 
