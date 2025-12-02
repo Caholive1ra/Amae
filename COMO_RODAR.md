@@ -126,12 +126,14 @@ O projeto está configurado para funcionar corretamente no GitHub Pages com Reac
 
 ### ⚠️ Importante: Configurar Base Path (se necessário)
 
-Se o seu repositório não está na raiz do GitHub Pages (ex: `https://usuario.github.io/amae-website/`), você precisa configurar o base path:
+O Vite agora detecta automaticamente o nome do repositório quando o build roda dentro do GitHub Actions (variável `GITHUB_REPOSITORY`) e ajusta o `base` para `/<nome-do-repo>/`. Ou seja, na maioria dos casos você **não precisa mais** mexer em nada para que os assets sejam servidos corretamente no GitHub Pages.
+
+Cenários em que ainda é preciso forçar um base path manualmente (por exemplo, build local para publicar via `gh-pages` ou uso de um subdiretório personalizado):
 
 1. Crie um arquivo `.env.production` na raiz do projeto:
 
 ```env
-VITE_BASE_PATH=/amae-website/
+VITE_BASE_PATH=/seu-caminho-personalizado/
 ```
 
 2. Faça o build novamente:
