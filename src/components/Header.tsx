@@ -17,10 +17,7 @@ const Header = () => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
-      
-      // Calculate opacity based on scroll (0 to 1 over 200px)
-      const newOpacity = Math.min(scrollPosition / 200, 0.98);
-      setScrollOpacity(newOpacity);
+      setScrollOpacity(Math.min(scrollPosition / 200, 0.98));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,10 +25,9 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { to: '/colecoes', label: 'Coleções' },
-    { to: '/pecas', label: 'Peças' },
+    { to: '/colecao', label: 'Coleção' },
     { to: '/processos', label: 'Processos' },
-    { to: '/sobre', label: 'Sobre' },
+    { to: '/sobre', label: 'Manifesto' },
     { to: '/contato', label: 'Contato' },
   ];
 
@@ -51,23 +47,21 @@ const Header = () => {
     >
       <nav className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            to="/"            
-          >
-            <img src={logoOficial} alt="Amaé" className="h-10 w-auto" />
+          <Link to="/" aria-label="Voltar para o inicio">
+            <img src={logoOficial} alt="Amae" className="h-10 w-auto" />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <ul className="flex items-center gap-10">
               {navLinks.map((link) => (
                 <li key={link.to}>
-                  <NavLink 
+                  <NavLink
                     to={link.to}
                     className={cn(
-                      "text-sm tracking-widest uppercase font-lato font-light transition-all duration-300",
-                      isScrolled || !isHome ? "text-foreground/70" : "text-background/90 mix-blend-difference"
+                      'text-sm tracking-widest uppercase font-lato font-light transition-all duration-300',
+                      isScrolled || !isHome
+                        ? 'text-foreground/70'
+                        : 'text-background/90 mix-blend-difference'
                     )}
                   >
                     {link.label}
@@ -77,22 +71,20 @@ const Header = () => {
             </ul>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
             <button
               className={cn(
-                "transition-colors duration-300",
-                isScrolled || !isHome ? "text-foreground" : "text-background mix-blend-difference"
+                'transition-colors duration-300',
+                isScrolled || !isHome ? 'text-foreground' : 'text-background mix-blend-difference'
               )}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label="Abrir menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.ul

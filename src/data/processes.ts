@@ -2,7 +2,7 @@ import { ProcessImage } from '@/types';
 import processDye from '@/assets/process-dye.jpg';
 import processCrochet from '@/assets/process-crochet.jpg';
 import collectionHero from '@/assets/collection-hero.jpg';
-import aboutAtelier from '@/assets/about-atelier.jpg';
+import aboutAtelier from '@/assets/atelie-novo.jpeg';
 
 export const processImages: ProcessImage[] = [
   {

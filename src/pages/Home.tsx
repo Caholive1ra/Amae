@@ -1,18 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ScrollReveal';
 import PoeticPause from '@/components/PoeticPause';
 import SEO from '@/components/SEO';
 import heroBackground from '@/assets/foto-inicio.jpg';
-import collectionHero from '@/assets/collection-hero.jpg';
 import aboutAtelier from '@/assets/atelie-image.jpeg';
 import process1 from '@/assets/process1.jpeg';
 import process2 from '@/assets/process2.jpeg';
 import process3 from '@/assets/process3.jpeg';
 import { useRef } from 'react';
-import { useProduct } from '@/contexts/ProductContext'; 
-import { featuredPieces } from '@/data/products';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -24,26 +21,27 @@ const Home = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
-  const navigate = useNavigate();
-  const { setSelectedProduct } = useProduct();
-
-  const handleEncomendar = (pieceName: string) => {
-    setSelectedProduct(pieceName);
-    navigate('/contato');
-    // Scroll suave será feito no Contact após o componente montar
-    setTimeout(() => {
-      const formSection = document.getElementById('contact-form');
-      if (formSection) {
-        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
-  };
-
   const processes = [
-    { title: 'descubra os pigmentos usados na última coleção', description: 'Pigmentos da terra e plantas da Chapada', image: process1 },
-    { title: 'descubra os materiais tipos de ponto e muito mais', description: 'Cada ponto carrega tempo e cuidado', image: process2 },
-    { title: 'tecidos naturais- aprenda a identificar e as caracteristicas de tecidos naturais', description: 'Formas orgânicas que respeitam o corpo', image: process3 },
-    { title: 'cuidados- cuidados com sua peça 100% natural', description: 'O processo que honra a impermanência', image: aboutAtelier },
+    {
+      title: 'Pigmentos que brotam da terra',
+      description: 'Infusao de hibisco, cafe e curcuma descansa por horas antes de tocar o algodao.',
+      image: process1,
+    },
+    {
+      title: 'Tramas que respiram',
+      description: 'Linhas de algodao cru e linho sao tracionadas a mao ate virarem textura calma.',
+      image: process2,
+    },
+    {
+      title: 'Casulos de calma',
+      description: 'Cada envelope para o corpo repousa em moldes organicos que respeitam o corpo.',
+      image: process3,
+    },
+    {
+      title: 'Cuidado que atravessa ciclos',
+      description: 'Memorias vestiveis pedem sol delicado, agua fria e sombra prolongada.',
+      image: aboutAtelier,
+    },
   ];
 
   return (
@@ -82,7 +80,7 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl md:text-6x1 lg:text-7xl font-playfair text-background mb-6 leading-tight tracking-wide"
             >
-              AMAÉ é a lembrança viva de que tudo o que existe, existe por amar e encontro entre corpo e solo.
+              <span className="block">AMAE é o encontro entre corpo e solo, memoria viva do que existe por amar.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -90,7 +88,8 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-xl md:text-2xl text-background/90 font-light max-w-3xl mx-auto"
             >
-              Tudo feito com calma e respeito com a natureza
+              <span className="block">A impermanencia e o que nos torna eternos.</span>
+              <span className="block">Entre o fazer e o florescer.</span>
             </motion.p>
           </motion.div>
         </section>
@@ -101,9 +100,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl md:text-3xl font-playfair text-foreground text-center max-w-3xl"
+            className="text-2xl md:text-3xl font-playfair text-foreground text-center max-w-2x3"
           >
-            descubra mais sobre a amaé
+            Entre o fazer e o florescer. Conheca o caderno vivo da Amae.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -111,7 +110,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Button asChild size="lg" className="shadow-soft hover-lift">
-              <Link to="/sobre">descubra mais sobre a amaé</Link>
+              <Link to="/sobre">descubra nosso manifesto vivo</Link>
             </Button>
           </motion.div>
         </div>
@@ -142,8 +141,8 @@ const Home = () => {
                   </h2>
                   <div className="space-y-6">
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
-                      Nascemos do conceito da impermanência da natureza. Cada peça é um registro vivo do tempo, 
-                      tingida com pigmentos naturais que carregam a memória da terra.
+                      Costuramos texturas de linho e seda que guardam historias de quem as veste. A impermanencia e celebrada
+                      em cada ponto, porque o que nasce do cuidado floresce dentro de quem pausa.
                     </p>
                     <p className="text-xl text-muted-foreground leading-relaxed font-light">
                       registra o passar do tempo criando historias junto com quem a veste. celebrando a vida e a impermanencia da natureza
@@ -161,63 +160,6 @@ const Home = () => {
 
         {/* Poetic Pause */}
         <PoeticPause text="A terra fala — e a roupa responde." />
-
-        {/* Featured Pieces */}
-        <section className="py-32 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-7xl">
-            <ScrollReveal>
-              <div className="text-center mb-20">
-                <h2 className="text-5xl md:text-6xl font-playfair text-foreground mb-6 leading-tight">
-                  Coleção Memória da Terra
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-light">
-                  coleção de primavera 25 a impermanencia como ponto de transformação
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {featuredPieces.map((piece, index) => (
-                <ScrollReveal key={piece.id} delay={index * 100}>
-                  <div className="group">
-                    <motion.div 
-                      whileHover={{ y: -8 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="relative h-[600px] rounded-lg overflow-hidden mb-6 shadow-soft"
-                    >
-                      <motion.img
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        src={piece.image}
-                        alt={piece.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 gradient-overlay-light opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </motion.div>
-                    <h3 className="text-2xl font-playfair text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
-                      {piece.name}
-                    </h3>
-                    <Button 
-                      onClick={() => handleEncomendar(piece.name)}
-                      className="w-full shadow-soft hover-lift"
-                    >
-                      Encomendar
-                    </Button>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-
-            <ScrollReveal delay={400}>
-              <div className="text-center mt-16">
-                <Button asChild size="lg" variant="outline" className="shadow-soft hover-lift">
-                  <Link to="/pecas">Ver Todas as Peças</Link>
-                </Button>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
 
         {/* Process Section */}
         <section className="py-32 px-4">
@@ -268,28 +210,44 @@ const Home = () => {
             <ScrollReveal delay={400}>
               <div className="text-center mt-16">
                 <Button asChild variant="outline" size="lg" className="hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                  <Link to="/processos">baixe nosso caderno de experimentações de pigmentos</Link>
+                  <Link to="/processos">baixe nosso caderno de experimentacoes botanicas</Link>
                 </Button>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
+        {/* Conceito Imagético Section - com vídeo da coleção */}
         <section className="py-24 px-4">
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 items-center">
               <ScrollReveal>
                 <div className="space-y-6 px-2 md:px-0 md:max-w-xl">
                   <p className="text-xs sm:text-sm text-accent uppercase tracking-[0.3em] font-lato font-light">
-                    di?rio vivo
+                    conceito imagetico
                   </p>
                   <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair text-foreground leading-tight">
-                    Assista ao processo em movimento
+                    Conceito imagetico: os cinco sentidos da memoria
                   </h2>
-                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
-                    Um registro vertical direto do ateli? Ama?. Aperte o play para acompanhar as m?os, os pigmentos e o
-                    tempo que d?o vida a cada pe?a.
-                  </p>
+                  <div className="space-y-4 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+                    <p>
+                      O conceito imagetico nasce quando o corpo desacelera e escuta o solo. Sentir tambem e existir.
+                      Cada quadro revela pele, tecido e paisagem como camadas de memoria que se abrem como flor depois da chuva.
+                    </p>
+                    <p>
+                      Os angulos nao apenas mostram, eles sentem e aproximam. Convidam a tocar o tempo devagar e a se posicionar
+                      no mundo com suavidade, raiz e coragem representativa.
+                    </p>
+                    <p>
+                      O corpo nao e moldura, e materia viva. Ele repousa, observa e respira. Por meio dele a colecao fala com intimidade,
+                      lembrando que a impermanencia nos torna eternos.
+                    </p>
+                  </div>
+                  <div className="pt-4">
+                    <Button asChild size="lg" className="shadow-soft hover-lift">
+                      <Link to="/colecao">Conhecer a Coleção</Link>
+                    </Button>
+                  </div>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={150}>
@@ -298,7 +256,7 @@ const Home = () => {
                     <iframe
                       className="absolute inset-0 h-full w-full"
                       src="https://www.youtube.com/embed/kCXds_FbF9w"
-                      title="Processo Ama?"
+                      title="Coleção Memória da Terra"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

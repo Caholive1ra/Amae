@@ -1,6 +1,6 @@
 import ScrollReveal from '@/components/ScrollReveal';
-import aboutAtelier from '@/assets/about-atelier.jpg';
-import heroHome from '@/assets/hero-home.jpg';
+import aboutAtelier from '@/assets/atelie-novo.jpeg';
+import nascimento from '@/assets/nascimento.jpg';
 import processDye from '@/assets/process-dye.jpg';
 
 const About = () => {
@@ -12,7 +12,7 @@ Somos movidas pela curiosidade, pela contemplação e pela delicadeza do fazer m
 É um lembrete de que tudo tem ritmo, tudo tem transformação e que o que nasce do cuidado floresce — no corpo, na memória e na vida.
 Criamos para mulheres reais — sensíveis e potentes, urbanas e naturais, que vivem a intensidade do agora, mas buscam pausa, presença e significado. Mulheres que veem moda não como tendência, mas como extensão da identidade e do caminho que trilham.
 Cada peça Amaé é desenvolvida com processos responsáveis, materiais naturais e acabamentos pensados para durar. Não aceleramos o tempo. Nós o respeitamos.`,
-      image: heroHome,
+      image: nascimento,
     },
     {
       title: 'A Impermanência Como Beleza',

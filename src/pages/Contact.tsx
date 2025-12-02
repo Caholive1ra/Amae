@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Instagram } from 'lucide-react';
-import aboutAtelier from '@/assets/about-atelier.jpg';
+import aboutAtelier from '@/assets/atelie-novo.jpeg';
 import { useProduct } from '@/contexts/ProductContext';
 
 const Contact = () => {

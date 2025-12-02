@@ -29,7 +29,7 @@ const PieceDetail = () => {
           <div className="container mx-auto text-center">
             <h1 className="text-5xl font-playfair text-foreground mb-8">Peça não encontrada</h1>
             <Button asChild className="shadow-soft">
-              <Link to="/pecas">Voltar para Peças</Link>
+              <Link to="/colecao">Voltar para Coleção</Link>
             </Button>
           </div>
         </div>
@@ -65,7 +65,7 @@ const PieceDetail = () => {
       {/* Back Button */}
       <div className="container mx-auto px-4 mb-8">
         <Button asChild variant="ghost" size="sm" className="hover:text-accent">
-          <Link to="/pecas">
+          <Link to="/colecao">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Voltar
           </Link>

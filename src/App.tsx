@@ -13,8 +13,7 @@ import PageTransition from "./components/PageTransition";
 import { ProductProvider } from "./contexts/ProductContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
-import Collections from "./pages/Collections";
-import Pieces from "./pages/Pieces";
+import Collection from "./pages/Collection";
 import PieceDetail from "./pages/PieceDetail";
 import Processes from "./pages/Processes";
 import About from "./pages/About";
@@ -56,8 +55,7 @@ const App = () => {
                     <PageTransition>
                       <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/colecoes" element={<Collections />} />
-                        <Route path="/pecas" element={<Pieces />} />
+                        <Route path="/colecao" element={<Collection />} />
                         <Route path="/peca/:id" element={<PieceDetail />} />
                         <Route path="/processos" element={<Processes />} />
                         <Route path="/sobre" element={<About />} />
