@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import InterestModal from '@/components/InterestModal';
-import type { Piece } from '@/types';
 import { allProducts as originalProducts } from '@/data/products';
 
 import product1 from '@/assets/blusa manga única hibisco + calça reta babados de crochê café.jpg';
@@ -14,6 +12,13 @@ import product3 from '@/assets/Vestido com croche.jpg';
 import product4 from '@/assets/blusa ombro em camadas feijão + calça com elastico fluida + lenço de ecoprint.jpg';
 import product5 from '@/assets/Top regulável hibisco feito com zanzibar + calça regulável em viscolinho.jpg';
 import product6 from '@/assets/blusa regata nervuras café + saia com camadas feijão.jpg';
+
+// Tipo simplificado para produtos básicos
+type SimplePiece = {
+  id: string;
+  name: string;
+  image: string;
+};
 
 const Pieces = () => {
   const pieces = originalProducts;
@@ -50,10 +55,10 @@ const Pieces = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-24"
           >
-            <h1 className="text-6xl md:text-7xl font-playfair text-foreground mb-8 leading-tight">
+            <h1 className="text-6xl md:text-7xl font-playfair text-[#4C345A] mb-8 leading-tight">
               Peças
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
+            <p className="text-xl text-[#8B7A6B] max-w-2xl mx-auto font-light">
               Cada peça é única, carregando a memória da terra e o tempo do fazer artesanal
             </p>
           </motion.div>
@@ -76,7 +81,7 @@ const Pieces = () => {
 };
 
 interface PieceCardProps {
-  piece: Piece;
+  piece: SimplePiece;
   index: number;
   onOrderClick: (pieceName: string) => void;
 }
@@ -111,7 +116,7 @@ const PieceCard = ({ piece, index, onOrderClick }: PieceCardProps) => {
           <div className="absolute inset-0 gradient-overlay-light opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
       </Link>
-      <h3 className="text-2xl md:text-3xl font-playfair text-foreground mb-4">
+      <h3 className="text-2xl md:text-3xl font-playfair text-[#4C345A] mb-4">
         {piece.name}
       </h3>
       <Button 

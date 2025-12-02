@@ -65,44 +65,7 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-
-    --card: 270 25% 18%;
-    --card-foreground: 30 33% 98%;
-
-    --popover: 270 25% 18%;
-    --popover-foreground: 30 33% 98%;
-
-    --primary: 160 18% 65%;
-    --primary-foreground: 270 25% 28%;
-
-    --secondary: 270 25% 25%;
-    --secondary-foreground: 30 33% 98%;
-
-    --muted: 270 20% 22%;
-    --muted-foreground: 30 12% 67%;
-
-    --accent: 35 38% 62%;
-    --accent-foreground: 270 25% 28%;
-
-    --nature: 160 18% 55%;
-    --nature-foreground: 270 25% 28%;
-
-    --destructive: 0 55% 45%;
-    --destructive-foreground: 30 33% 98%;
-
-    --border: 270 20% 25%;
-    --input: 270 20% 25%;
-    --ring: 160 18% 65%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* Dark theme removido - usando apenas tema claro */
 }
 
 @layer base {
